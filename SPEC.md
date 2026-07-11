@@ -18,19 +18,18 @@ Every concept file MUST begin with a YAML frontmatter block containing one requi
 ```yaml
 ---
 type: <Type name>                  # REQUIRED
+category: <Optional content classification>  # categories — see below
 title: <Optional display name>
 description: <Optional one-line summary>
 resource: <Optional canonical URI for the underlying asset>
 tags: [<tag>, <tag>, …]            # Optional
 timestamp: <ISO 8601 datetime>     # Optional last-modified time
-category: <Optional content classification>  # Wiki extension — see below
-# … other producer-defined key/value pairs
 ---
 ```
 
 **Required:** `type`.
 
-**Recommended, in priority order:** `title`, `description`, `resource`, `tags`, `timestamp`.
+**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`.
 
 **Wiki extension — `category`:** an optional field, usable on any concept (not just folder roots), that classifies what kind of content the note is — e.g. `project`, `book`, `topic`, `article`. Open-ended, not centrally registered, same tolerance rules as `type`.
 
