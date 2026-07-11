@@ -1,10 +1,10 @@
 ---
-type: topic
+type: note
 category: meta
 title: Categories
 description: How the category field is used to classify concepts in this wiki.
 tags: [okf, meta, category]
-timestamp: 2026-07-11T00:00:00Z
+timestamp: 2026-07-11T18:00:00Z
 authorship: 1
 ---
 

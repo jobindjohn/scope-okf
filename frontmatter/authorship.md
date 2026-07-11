@@ -1,10 +1,10 @@
 ---
-type: topic
+type: note
 category: meta
 title: Authorship
 description: How the authorship field records how much of a concept's text came from a human vs. an LLM.
 tags: [okf, meta, authorship]
-timestamp: 2026-07-11T00:00:00Z
+timestamp: 2026-07-11T18:00:00Z
 authorship: 1
 ---
 

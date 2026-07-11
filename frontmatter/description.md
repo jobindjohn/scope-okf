@@ -1,10 +1,10 @@
 ---
-type: topic
+type: note
 category: meta
 title: Description
 description: How the description field records a one-line summary of a concept.
 tags: [okf, meta, description]
-timestamp: 2026-07-11T16:00:00Z
+timestamp: 2026-07-11T18:00:00Z
 authorship: 1
 ---
 

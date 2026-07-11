@@ -1,10 +1,10 @@
 ---
-type: topic
+type: note
 category: meta
 title: Title
 description: How the title field records a concept's display name.
 tags: [okf, meta, title]
-timestamp: 2026-07-11T16:00:00Z
+timestamp: 2026-07-11T18:00:00Z
 authorship: 1
 ---
 
@@ -30,5 +30,5 @@ Notes on the `title` field, expanding on its definition in [spec-okf.md](/spec-o
 # Guidance
 
 * Set `title` whenever the filename isn't already a good display name — most notes benefit from it.
-* Don't restate `category` or `type` inside `title` (e.g. avoid `title: Tags (topic)`) — those are separate fields for a reason.
+* Don't restate `category` or `type` inside `title` (e.g. avoid `title: Tags (meta)`) — those are separate fields for a reason.
 * If a note gets renamed or repurposed, update `title` to match rather than leaving it describing the old content.

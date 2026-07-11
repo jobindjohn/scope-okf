@@ -1,10 +1,10 @@
 ---
-type: topic
+type: note
 category: meta
 title: Tags
 description: How the tags field is used for free-form keywords and cross-cutting association in this wiki.
 tags: [okf, meta, tags]
-timestamp: 2026-07-11T00:00:00Z
+timestamp: 2026-07-11T18:00:00Z
 authorship: 1
 ---
 

@@ -1,10 +1,10 @@
 ---
-type: topic
+type: note
 category: meta
 title: Resource
 description: How the resource field records canonical URI(s) for the underlying asset a concept documents.
 tags: [okf, meta, resource]
-timestamp: 2026-07-11T16:00:00Z
+timestamp: 2026-07-11T18:00:00Z
 authorship: 1
 ---
 
@@ -12,7 +12,7 @@ Notes on the `resource` field, expanding on its definition in [spec-okf.md](/spe
 
 # What `resource` is for
 
-`resource` records where the real, non-wiki asset a concept note is *about* or derived from lives — the book's ISBN/URL, the article's original link, the paper's DOI, the repo the note documents, or a person's contact points and profiles. It answers "where does the real thing live?" A note without an external counterpart (e.g. a pure `topic` or `meta` note) usually has no `resource`.
+`resource` records where the real, non-wiki asset a concept note is *about* or derived from lives — the book's ISBN/URL, the article's original link, the paper's DOI, the repo the note documents, or a person's contact points and profiles. It answers "where does the real thing live?" A note without an external counterpart (e.g. a plain `category: meta` note like this one) usually has no `resource`.
 
 `resource` takes one of two forms:
 
