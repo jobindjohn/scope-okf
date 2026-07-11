@@ -7,7 +7,7 @@ tags: [okf, meta, category]
 timestamp: 2026-07-11T00:00:00Z
 ---
 
-Notes on the `category` field, expanding on its definition in [SPEC.md](/spec-okf.md).
+Notes on the `category` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
 
 # What `category` is for
 
@@ -21,7 +21,7 @@ Notes on the `category` field, expanding on its definition in [SPEC.md](/spec-ok
 
 # Conventions
 
-`category` is open-ended and not centrally registered — unknown or missing values don't break conformance (per SPEC.md's conformance rules). That said, keeping the vocabulary small and reused makes the wiki more navigable. Categories seen so far in this wiki:
+`category` is open-ended and not centrally registered — unknown or missing values don't break conformance (per spec-okf.md's conformance rules). That said, keeping the vocabulary small and reused makes the wiki more navigable. Categories seen so far in this wiki:
 
 | Category  | Meaning                                                   |
 |-----------|------------------------------------------------------------|

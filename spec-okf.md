@@ -7,7 +7,7 @@ tags: [wiki, okf, meta]
 timestamp: 2026-07-11T12:37:43Z
 ---
 
-Root concept for this wiki. See the [index](/index.md) for what's here and the [log](/log.md) for update history. Structure and frontmatter conventions are defined in [SPEC.md](/SPEC.md).
+Root concept for this wiki. See the [index](/index.md) for what's here and the [log](/log.md) for update history. This note is the spec itself — structure and frontmatter conventions are defined below.
 
 # Personal Wiki Spec
 
@@ -35,14 +35,17 @@ description: <Optional one-line summary>
 resource: <Optional canonical URI for the underlying asset>
 tags: [<tag>, <tag>, …]            # Optional
 timestamp: <ISO 8601 datetime>     # Optional last-modified time
+authorship: <1|2|3|4>              # Optional provenance level — see below
 ---
 ```
 
 **Required:** `type`.
 
-**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`.
+**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`, `authorship`.
 
 **Wiki extension — `category`:** an optional field, usable on any concept (not just folder roots), that classifies what kind of content the note is — e.g. `project`, `book`, `topic`, `article`. Open-ended, not centrally registered, same tolerance rules as `type`.
+
+**Wiki extension — `authorship`:** an optional field recording how a note's text was produced, on a 1–4 scale: `1` fully LLM-generated, `2` LLM-drafted/human-edited, `3` human-drafted/LLM-edited, `4` fully human-authored. See [Authorship](/frontmatter/authorship.md) for full guidance. Missing values are tolerated, same as `category`.
 
 ## Folder root concepts (`type: main`)
 
@@ -102,7 +105,7 @@ This wiki is OKF v0.1 conformant if:
 3. `index.md` and `log.md`, where present, follow the structure in OKF §6 and §7.
 4. *(Wiki extension)* Every folder containing a `type: main` file has both an `index.md` and a `log.md`.
 
-Missing optional fields, unknown `type`/`category` values, and broken links are all tolerated — they do not break conformance.
+Missing optional fields, unknown `type`/`category` values, out-of-range `authorship` values, and broken links are all tolerated — they do not break conformance.
 
 ## Reference
 
