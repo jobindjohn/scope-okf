@@ -2,6 +2,7 @@
 
 ## 2026-07-11
 
+* **Update**: Expanded `authorship` from a 1–4 to a 1–5 scale in [spec-okf](/spec-okf.md), inserting a new level 2 ("LLM-generated, human-directed" — feedback loop, no direct human edits) between autonomous LLM generation and human-edited text; revised [Authorship](/frontmatter/authorship.md) accordingly and migrated all 8 existing `authorship: 1` notes in this wiki to `2`, since none were single-shot with zero feedback.
 * **Update**: Clarified in [spec-okf](/spec-okf.md) and [Type](/frontmatter/type.md) that `type: main` is never required per-folder — it's an editorial choice by the wiki owner which folder (if any) in a related group of subfolders serves as the root.
 * **Update**: Added candidate `type` values (person, reference, draft/stub, template, redirect) to [Type](/frontmatter/type.md), split into "in use" vs. "candidates" tables.
 * **Creation**: Added [Type](/frontmatter/type.md), documenting the required `type` field; updated index.

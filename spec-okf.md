@@ -4,8 +4,8 @@ title: spec-okf
 description: Specs for Jobin's wiki
 category: project
 tags: [wiki, okf, meta]
-timestamp: 2026-07-11T19:00:00Z
-authorship: 1
+timestamp: 2026-07-11T20:00:00Z
+authorship: 2
 ---
 
 Root concept for this wiki. See the [index](/index.md) for what's here and the [log](/log.md) for update history. This note is the spec itself — structure and frontmatter conventions are defined below.
@@ -36,7 +36,7 @@ description: <Optional one-line summary>
 resource: <Optional canonical URI, or map of named URIs, for the underlying asset(s)>
 tags: [<tag>, <tag>, …]            # Optional
 timestamp: <ISO 8601 datetime>     # Optional last-modified time
-authorship: <1|2|3|4>              # Optional provenance level — see below
+authorship: <1|2|3|4|5>            # Optional provenance level — see below
 ---
 ```
 
@@ -46,7 +46,7 @@ authorship: <1|2|3|4>              # Optional provenance level — see below
 
 **Wiki extension — `category`:** an optional field, usable on any concept (not just folder roots), that classifies what kind of content the note is — e.g. `project`, `book`, `topic`, `article`. Open-ended, not centrally registered, same tolerance rules as `type`.
 
-**Wiki extension — `authorship`:** an optional field recording how a note's text was produced, on a 1–4 scale: `1` fully LLM-generated, `2` LLM-drafted/human-edited, `3` human-drafted/LLM-edited, `4` fully human-authored. See [Authorship](/frontmatter/authorship.md) for full guidance. Missing values are tolerated, same as `category`.
+**Wiki extension — `authorship`:** an optional field recording how a note's text was produced, on a 1–5 scale: `1` fully LLM-generated/autonomous, `2` LLM-generated/human-directed (feedback loop, no direct human edits), `3` LLM-drafted/human-edited, `4` human-drafted/LLM-edited, `5` fully human-authored. See [Authorship](/frontmatter/authorship.md) for full guidance. Missing values are tolerated, same as `category`.
 
 **Wiki extension — `resource`:** may be either a single URI string (the common case) or a YAML map of named URIs when a concept has more than one canonical link — e.g. a `type: person` note with several contact points and profiles, or an `article`-category note indexed under several venues (DOI, PMID, journal, proceedings, preprint):
 

@@ -4,8 +4,8 @@ category: meta
 title: Type
 description: How the type field marks a concept's structural role in the wiki — the one required frontmatter field.
 tags: [okf, meta, type]
-timestamp: 2026-07-11T19:00:00Z
-authorship: 1
+timestamp: 2026-07-11T20:00:00Z
+authorship: 2
 ---
 
 Notes on the `type` field, expanding on its definition in [spec-okf.md](/spec-okf.md).

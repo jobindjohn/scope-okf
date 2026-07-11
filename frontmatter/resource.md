@@ -4,8 +4,8 @@ category: meta
 title: Resource
 description: How the resource field records canonical URI(s) for the underlying asset a concept documents.
 tags: [okf, meta, resource]
-timestamp: 2026-07-11T18:00:00Z
-authorship: 1
+timestamp: 2026-07-11T20:00:00Z
+authorship: 2
 ---
 
 Notes on the `resource` field, expanding on its definition in [spec-okf.md](/spec-okf.md).

@@ -4,8 +4,8 @@ category: meta
 title: Categories
 description: How the category field is used to classify concepts in this wiki.
 tags: [okf, meta, category]
-timestamp: 2026-07-11T18:00:00Z
-authorship: 1
+timestamp: 2026-07-11T20:00:00Z
+authorship: 2
 ---
 
 Notes on the `category` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
