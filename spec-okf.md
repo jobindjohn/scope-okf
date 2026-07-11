@@ -1,7 +1,7 @@
 ---
 type: main
 title: spec-okf
-description: Specs for Jobin's wiki
+description: Specs for Wiki
 category: project
 tags: [wiki, okf, meta]
 timestamp: 2026-07-11T21:30:00Z
