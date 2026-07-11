@@ -116,62 +116,11 @@ Date headings MUST use ISO 8601 `YYYY-MM-DD`. The leading bold word (`**Update**
 
 ## LLM provenance
 
-When a note has any LLM involvement in its text — `authorship` `1` through `4` — the wiki keeps a durable record of *how* that text was produced: the prompt, the model, and the resulting authorship level. This is provenance, not a changelog; its relationship to `log.md` is defined at the end of this section.
+Notes with LLM involvement in their text (`authorship` `1`–`4`) carry a durable record of *how* that text was produced — the prompt, model, and resulting authorship level. For `authorship: 1` this is a single inline block at the top of the note body; for `2`–`4` it moves to a sidecar concept with `type: llm-log`, stored in a reserved `.llm/` folder beside the note and named `<note>-llm.md`.
 
-### Where provenance lives
+`.llm/` is a reserved system folder: it is never listed in `index.md`, the `type: main` → `index.md`+`log.md` rule never applies to it, reserved-filename semantics are suspended inside it, and reserved files (`index.md`, `log.md`) get no sidecar. Entries are reverse-chronological with full ISO 8601 timestamps. This provenance is deliberately distinct from `log.md` — which records *what* changed, not *how* it was produced — and is a recommended convention, not a conformance requirement.
 
-* **`authorship: 1`** — fully autonomous, a single generating prompt, no human feedback. One interaction doesn't warrant its own file, so the provenance is recorded **inline**, as a single block at the top of the note body (below the frontmatter, above the note's content).
-* **`authorship: 2`–`4`** — a human feedback loop exists. Provenance moves to a dedicated sidecar concept with `type: llm-log`, stored in a `.llm/` folder beside the note and named after the note with a `-llm` suffix:
-
-```
-projects/spec-okf/
-├── spec-okf.md          # the concept — authorship: 2
-├── .llm/
-│   └── spec-okf-llm.md  # type: llm-log — provenance for spec-okf.md
-├── index.md
-└── log.md
-```
-
-**Migration (`1` → `2`).** The first time a note gains a human feedback round, create its `.llm/<note>-llm.md`, move the inline `authorship: 1` block into it as the **oldest** entry, add the new round as the newest entry on top, and remove the inline block from the note body. Provenance then lives in exactly one place.
-
-### `.llm/` is a reserved system folder
-
-* It is **not** part of the browsable concept tree: `.llm/` is never listed in `index.md`, and the "folder with a `type: main` file MUST also have `index.md` and `log.md`" rule never applies to `.llm/` itself.
-* Reserved files (`index.md`, `log.md`) do **not** get provenance sidecars — they are tooling artifacts, not authored concepts.
-* Reserved-filename semantics are **suspended inside `.llm/`**: every file there is a `type: llm-log` provenance record, even one named `index-llm.md` or `log-llm.md`. Combined with the mandatory `-llm` suffix, this keeps every provenance file unambiguous.
-
-### `llm-log` file format
-
-A `type: llm-log` file needs only `type` in its frontmatter; `title` and a `timestamp` (last interaction) are useful. It carries **no `authorship`** of its own — an LLM logging itself has no meaningful provenance level. Its body is a reverse-chronological list of interactions, newest first:
-
-```markdown
----
-type: llm-log
-title: LLM log — spec-okf
-timestamp: 2026-07-11T20:30:00Z
----
-
-## 2026-07-11T20:30Z · claude-opus-4-8 · → authorship 2
-**Prompt:** <verbatim prompt>
-**Change:** one-line summary of what the model did / what changed.
-
-## 2026-07-11T20:00Z · claude-opus-4-8 · → authorship 1
-**Prompt:** <verbatim original generating prompt>
-**Change:** initial generation.
-```
-
-Entry headings use a full ISO 8601 timestamp (not date-grouped like `log.md`) — interaction order *is* the provenance. Record the prompt verbatim and summarize the change. The inline `authorship: 1` block uses this same single-entry format, so `1` → `2` migration is copy-paste.
-
-Only LLM interactions produce entries: human-only edits generate none (they show up in git history and `log.md`). A sidecar persists even if a note is later fully rewritten by a human (`authorship: 5`) — it simply stops gaining entries; provenance history is not deleted.
-
-### `log.md` vs. `.llm/<note>-llm.md`
-
-These never duplicate each other:
-
-* `log.md` — folder-scoped changelog: **what** changed and **when**, human-facing.
-* `.llm/<note>-llm.md` — note-scoped provenance: **how** a note's text was produced (prompt, model, resulting authorship), machine-facing.
-
-A `log.md` entry MUST NOT reproduce prompts or model strings; it may note that a concept was LLM-revised and give its new authorship level, and stop there. An `llm-log` entry MUST NOT serve as the folder changelog.
+See [LLM provenance](/llm.md) for the entry format, the `1`→`2` migration, and full guidance.
 
 ## Conformance
 

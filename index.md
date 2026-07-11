@@ -1,6 +1,7 @@
 # spec-okf
 
 * [spec-okf](spec-okf.md) - Root concept for this wiki.
+* [LLM provenance](llm.md) - How LLM-authored notes record how their text was produced — inline for authorship 1, a type:llm-log sidecar under .llm/ for 2–4.
 
 # frontmatter
 
