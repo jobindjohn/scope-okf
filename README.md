@@ -1,18 +1,53 @@
 # spec-okf
 
-## What
+## Overview
 
-This is JDJ's personal wiki. It's stored as an [Open Knowledge Format (OKF)](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) knowledge bundle — a directory tree of plain markdown files with YAML frontmatter, no database or proprietary app required. The exact conventions this wiki follows (required fields, folder-root notes, index/log files) are defined in [spec-okf.md](./spec-okf.md).
+**spec-okf is a specification for a personal wiki** — a small set of conventions for keeping notes, projects, and reference material as plain markdown files in a git folder, with no app or database required. It is not itself the wiki; it's the rulebook you follow to build and maintain one. Every note ends up a `.md` text file you can read, edit, and search with any tool, and a light layer of convention (a `type:` field at the top of each file, a couple of reserved filenames like `index.md` and `log.md`) makes the collection self-describing, so both you and an AI agent can navigate and add to it reliably.
 
-## Why
+The conventions build on the [Open Knowledge Format (OKF)](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md), extended with a few wiki-specific rules. The full specification lives in [spec-okf.md](./spec-okf.md), which is the source of truth; this README is just an on-ramp.
 
-Notes, projects, and reference material tend to get scattered across apps that don't talk to each other and don't survive well over time. Markdown in git avoids that: it's readable without tooling, diffable, portable, and works equally well whether a human or an agent is reading or writing it. OKF adds just enough structure — a `type` field, some reserved filenames — to make the content self-describing, without locking anything into a specific tool or schema.
+**Why markdown and OKF.** Notes, projects, and reference material tend to get scattered across apps that don't talk to each other and don't survive well over time. Markdown in git avoids that: it's readable without tooling, diffable, portable, and works equally well whether a human or an agent is reading or writing it. OKF adds just enough structure to make the content self-describing without locking anything into a specific tool or schema.
 
-## How
+If you're new here, you only need to know three things to start: notes are markdown files, each one begins with a small `type:` header, and folders can group them. Everything else is optional and can be adopted as you grow.
 
-Each note is a markdown file with a small YAML frontmatter block (`type` is required; `title`, `description`, `tags`, `timestamp`, `category`, etc. are optional — see spec-okf.md for the full list). Folders can represent anything — a project, a book, a topic, an article — and may have a root note (`type: main`, named after the folder) plus an `index.md` listing and a `log.md` history. Notes link to each other with normal markdown links.
+## Getting Started
 
-To browse: start at a folder's `index.md`, or its `type: main` note if it has one.
+The fastest way to begin — you can add more structure later:
+
+1. **Create a note.** Make a `.md` file anywhere in the folder and give it a frontmatter block with a `type`:
+
+   ```markdown
+   ---
+   type: note
+   title: My first note
+   ---
+
+   Write anything here in normal markdown.
+   ```
+
+   That's a valid, conformant note. `type` is the only required field.
+
+2. **Link notes together.** Use ordinary markdown links: `[see this](/other-note.md)`. Bundle-relative paths (starting with `/` from the wiki root) are preferred.
+
+3. **Browse.** Open any folder's `index.md` (a plain list of what's inside) to find your way around, or read a folder's `type: main` note if it has one.
+
+That's enough to be useful on day one. When you want the fuller conventions — categories, provenance tracking, folder roots, logs — read [spec-okf.md](./spec-okf.md), which is the source of truth.
+
+## Roadmap: from simple to comprehensive
+
+You don't have to adopt all of OKF at once. A sensible progression:
+
+**Stage 1 — Just notes.** Create `.md` files with only `type` in the frontmatter. Write freely, link with markdown. This alone is a working wiki.
+
+**Stage 2 — Describe your notes.** Start adding the optional fields where they earn their place: `title`, `description`, `tags`, and `category` (e.g. `project`, `book`, `topic`, `article`) so notes become easier to scan and filter.
+
+**Stage 3 — Organize into folders with roots.** When a folder becomes a coherent unit (a project, a book, a subject area), give it a `type: main` root note named after the folder, plus an `index.md` listing its contents and a `log.md` recording changes.
+
+**Stage 4 — Track history and provenance.** Keep `log.md` files up to date (date-grouped, newest first) so you can see what changed and when. Use the `authorship` field (1–5) to record whether a note was written by you, an LLM, or somewhere in between — with `.llm/` sidecars capturing how AI-written text was produced.
+
+**Stage 5 — Full comprehensive use.** Rich `resource` links (DOIs, ORCIDs, contact points), consistent categories across the whole tree, complete logs and provenance, and cross-links throughout — a fully self-describing knowledge base that a human or an agent can traverse end to end.
+
+Move up a stage only when the extra structure starts paying off. Nothing below your current stage is mandatory to stay conformant.
 
 ## Instructions for Humans and LLMs
 
