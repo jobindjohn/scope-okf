@@ -4,7 +4,7 @@ title: spec-okf
 description: Specs for Jobin's wiki
 category: project
 tags: [wiki, okf, meta]
-timestamp: 2026-07-11T16:00:00Z
+timestamp: 2026-07-11T19:00:00Z
 authorship: 1
 ---
 
@@ -64,6 +64,8 @@ Map keys are open-ended, not centrally registered — same tolerance rules as `c
 ## Folder root concepts (`type: main`)
 
 A folder MAY have one concept file whose `type` is `main`, marking it as the root/summary concept for that folder. The file is named after the folder itself, not `index.md`:
+
+Not every folder needs one, and nested subfolders don't inherit a requirement for their own `type: main` just because a parent or sibling has one. Whether a given folder — or which folder within a related group of subfolders — gets a `main` note is an editorial call for the wiki owner, made when that folder represents a coherent enough unit to deserve a root/summary concept. A cluster of subfolders can share a single ancestor's `main` note as their effective root without each one having its own.
 
 ```
 projects/

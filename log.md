@@ -2,6 +2,7 @@
 
 ## 2026-07-11
 
+* **Update**: Clarified in [spec-okf](/spec-okf.md) and [Type](/frontmatter/type.md) that `type: main` is never required per-folder — it's an editorial choice by the wiki owner which folder (if any) in a related group of subfolders serves as the root.
 * **Update**: Added candidate `type` values (person, reference, draft/stub, template, redirect) to [Type](/frontmatter/type.md), split into "in use" vs. "candidates" tables.
 * **Creation**: Added [Type](/frontmatter/type.md), documenting the required `type` field; updated index.
 * **Creation**: Added [Title](/frontmatter/title.md) and [Description](/frontmatter/description.md), documenting those fields; updated index.

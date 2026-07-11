@@ -4,7 +4,7 @@ category: meta
 title: Type
 description: How the type field marks a concept's structural role in the wiki — the one required frontmatter field.
 tags: [okf, meta, type]
-timestamp: 2026-07-11T18:00:00Z
+timestamp: 2026-07-11T19:00:00Z
 authorship: 1
 ---
 
@@ -27,6 +27,7 @@ A `type` value is only worth introducing if it changes how a note is *handled* �
 * `type` MUST be present and non-empty on every concept file — this is the one thing that breaks conformance if missing (per spec-okf.md's conformance rules).
 * `type` is open-ended and not centrally registered, like `category` — unknown values are tolerated, but reuse existing ones over inventing near-duplicates.
 * `type: main` carries extra weight: any folder with a `type: main` file must also have `index.md` and `log.md` (spec-okf.md's wiki-extension rule). Only use `main` when you actually mean "this is the folder's root concept."
+* `main` is never required per-folder — not every folder needs one, and subfolders don't inherit a requirement for their own just because a parent has one. It's an editorial call by the wiki owner: which folder, within a related group of subfolders, deserves to be the root. A cluster of subfolders can share one ancestor's `main` note rather than each having its own.
 
 **In use:**
 
