@@ -5,6 +5,7 @@ description: Specs for Jobin's wiki
 category: project
 tags: [wiki, okf, meta]
 timestamp: 2026-07-11T12:37:43Z
+authorship: 2
 ---
 
 Root concept for this wiki. See the [index](/index.md) for what's here and the [log](/log.md) for update history. This note is the spec itself — structure and frontmatter conventions are defined below.
