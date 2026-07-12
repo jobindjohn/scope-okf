@@ -8,7 +8,7 @@ tags: [okf, meta, linking, wikilinks, links]
 timestamp: 2026-07-12T00:00:00Z
 llm:
   authorship: 2
-  review: unreviewed
+  review: reviewed
 see-also: [/spec-okf.md, /frontmatter/aliases.md, /frontmatter/id.md, /frontmatter/see-also.md]
 ---
 
