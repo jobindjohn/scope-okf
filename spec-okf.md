@@ -5,10 +5,10 @@ title: spec-okf
 description: Specs for Wiki
 category: project
 tags: [wiki, okf, meta]
-timestamp: 2026-07-11T23:30:00Z
+timestamp: 2026-07-12T00:00:00Z
 llm:
   authorship: 2
-  review: reviewed
+  review: unreviewed
   human-only-lock: true
 ---
 
@@ -39,6 +39,7 @@ type: <Type name>                  # REQUIRED
 id: <Optional stable unique identifier, immutable across renames>
 category: <Optional content classification>  # categories — see below
 title: <Optional display name>
+aliases: [<name>, …]               # Optional alternative names for name-based links — see Linking
 description: <Optional one-line summary>
 resource: <Optional canonical URI, or map of named URIs, for the underlying asset(s)>
 tags: [<tag>, <tag>, …]            # Optional
@@ -56,7 +57,7 @@ see-also: [<path or id>, …]
 
 **Required:** `type`.
 
-**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`, `llm`, `sensitivity`, `visibility`, `id`, `see-also`, `superseded_by`.
+**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`, `llm`, `sensitivity`, `visibility`, `id`, `aliases`, `see-also`, `superseded_by`.
 
 **Wiki extension — `category`:** an optional field, usable on any concept (not just folder roots), that classifies what kind of content the note is — e.g. `project`, `book`, `topic`, `article`. Open-ended, not centrally registered, same tolerance rules as `type`.
 
@@ -72,6 +73,8 @@ see-also: [<path or id>, …]
 
 **Wiki extension — `see-also`:** a list of related concepts as bundle-relative paths (or `id`s) — a machine-readable, frontmatter-level relation complementing inline body links, so agents can traverse relationships without parsing prose. See [See also](/frontmatter/see-also.md).
 
+**Wiki extension — `aliases`:** an optional list of alternative names for a note, used by name-based links (see [Linking](#linking)). Aliases are matched at the lowest resolver tier, alongside `title`, so they never shadow another note's filename. Open-ended and tolerated missing, same rules as `tags`. See [Aliases](/frontmatter/aliases.md).
+
 **Wiki extension — `resource`:** may be either a single URI string (the common case) or a YAML map of named URIs when a concept has more than one canonical link — e.g. a `type: person` note with several contact points and profiles, or an `article`-category note indexed under several venues (DOI, PMID, journal, proceedings, preprint):
 
 ```yaml
@@ -84,6 +87,14 @@ resource:
 ```
 
 Map keys are open-ended, not centrally registered — same tolerance rules as `category` and `tags`. See [Resource](/frontmatter/resource.md) for full guidance.
+
+## Linking
+
+Notes reference each other in two spellings resolved by one algorithm. **Path links** are ordinary markdown to a bundle-relative path (`[index](/index.md)`) — real markdown that renders anywhere, and the portable default. **Wikilinks** are name-based references in double brackets (`[[resource]]`) — an authoring convenience that isn't real markdown but always reduces to a path link.
+
+Both forms, plus the `id`/path references in `see-also` and `superseded_by`, resolve through a single tolerant resolver — `id` → filename basename → `title`/`aliases`, first match wins, with reserved files (`index.md`, `log.md`) and `.llm/` excluded. Unresolvable or ambiguous references are tolerated exactly like broken path links today, so wikilinks add no new conformance requirement.
+
+See [Linking](/linking.md) for the resolver precedence and normalization, shortest-unique-path disambiguation and its tie-break, wikilink syntax (display text, `#heading` anchors, `![[embeds]]`), the `aliases` field, the body-vs-frontmatter syntax split, and hardening to portable markdown.
 
 ## Folder root concepts (`type: main`)
 

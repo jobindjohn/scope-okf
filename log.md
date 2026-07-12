@@ -1,5 +1,11 @@
 # Directory Update Log
 
+## 2026-07-12
+
+* **Refactor**: Extracted the **Linking** section from [spec-okf](/spec-okf.md) into a standalone note [Linking](/linking.md) (with a `.llm/` provenance sidecar), leaving a three-paragraph summary plus a link in the spec — mirroring the earlier [llm.md](/llm.md) extraction. The `aliases` field definition stays in spec-okf.md. Added Linking to the index.
+* **Update**: Added a **Linking** section to [spec-okf](/spec-okf.md) introducing Obsidian-style wikilinks (`[[name]]`) as a tolerant extension over the existing path-based links. Defines one resolver used everywhere — `id` → filename basename → `title`/`aliases`, case-folded with `-`/space/`_` equivalent — plus shortest-unique-path disambiguation with a same-folder-first-then-widening tie-break, `[[name|display]]`/`[[name#Heading]]`/`![[embed]]` forms, a body-`[[ ]]`-vs-frontmatter-bare-strings split, hardening to portable markdown, and an unchanged (tolerant) conformance stance. spec-okf revised under human sign-off (it is `human-only-lock: true`); `review` reverted to `unreviewed` pending re-read.
+* **Creation**: Added the `aliases` frontmatter field (optional alternative names, matched at the lowest resolver tier so they never shadow a filename) with a field doc [Aliases](/frontmatter/aliases.md); added it to the frontmatter example and recommended-order list in [spec-okf](/spec-okf.md).
+
 ## 2026-07-11
 
 * **Update**: Reworked the standalone `authorship` scalar into an `llm` map in [spec-okf](/spec-okf.md) — `llm.authorship` (1–5) now sits alongside a `review` trust signal (`unreviewed`/`reviewed`/`verified`) and a `human-only-lock` flag governing autonomous agent edits; renamed the field doc `authorship.md` → [LLM](/frontmatter/llm.md) and migrated every existing note to the new form (all LLM-authored `review: reviewed`). spec-okf itself set `human-only-lock: true`.
