@@ -4,8 +4,10 @@ category: meta
 title: Type
 description: How the type field marks a concept's structural role in the wiki — the one required frontmatter field.
 tags: [okf, meta, type]
-timestamp: 2026-07-11T20:00:00Z
-authorship: 2
+timestamp: 2026-07-11T23:30:00Z
+llm:
+  authorship: 2
+  review: reviewed
 ---
 
 Notes on the `type` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
@@ -40,7 +42,8 @@ A `type` value is only worth introducing if it changes how a note is *handled* �
 
 | Type | Meaning |
 |------|---------|
-| `person` | A note about an individual. Pairs with the `resource` map form (email, ORCID, LinkedIn, …) — see [Resource](/frontmatter/resource.md). |
+| `person` | A note about an individual. Pairs with the `resource` map form (email, ORCID, LinkedIn, …) — see [Resource](/frontmatter/resource.md). Requires a [`sensitivity`](/frontmatter/sensitivity.md) field. |
+| `dataset` | A note documenting a dataset. If it contains personal information it requires a [`sensitivity`](/frontmatter/sensitivity.md) field (minimum `confidential`). |
 | `reference` | A note that's mainly a pointer to something external (a bookmark, a tool) plus light commentary, as opposed to original writing. |
 | `draft` / `stub` | An intentionally incomplete note — a placeholder or in-progress piece, flagged so it can be excluded from search or index generation. |
 | `template` | A reusable skeleton for creating new notes of a given shape. Would need its own conformance carve-out, since templates don't have real content. |

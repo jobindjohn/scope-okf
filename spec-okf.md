@@ -1,11 +1,15 @@
 ---
 type: main
+id: 20260711-9f2a
 title: spec-okf
 description: Specs for Wiki
 category: project
 tags: [wiki, okf, meta]
-timestamp: 2026-07-11T21:30:00Z
-authorship: 2
+timestamp: 2026-07-11T23:30:00Z
+llm:
+  authorship: 2
+  review: reviewed
+  human-only-lock: true
 ---
 
 Root concept for this wiki. See the [index](/index.md) for what's here and the [log](/log.md) for update history. This note is the spec itself — structure and frontmatter conventions are defined below.
@@ -32,23 +36,41 @@ Every concept file MUST begin with a YAML frontmatter block containing one requi
 ```yaml
 ---
 type: <Type name>                  # REQUIRED
+id: <Optional stable unique identifier, immutable across renames>
 category: <Optional content classification>  # categories — see below
 title: <Optional display name>
 description: <Optional one-line summary>
 resource: <Optional canonical URI, or map of named URIs, for the underlying asset(s)>
 tags: [<tag>, <tag>, …]            # Optional
 timestamp: <ISO 8601 datetime>     # Optional last-modified time
-authorship: <1|2|3|4|5>            # Optional provenance level — see below
+llm:                               # Optional LLM provenance + trust block — see below
+  authorship: <1|2|3|4|5>
+  review: <unreviewed|reviewed|verified>
+  human-only-lock: <true|false>
+sensitivity: <public|internal|confidential|restricted>  # required on person/dataset holding personal data
+visibility: <listed|unlisted|hidden>
+superseded_by: <path or id of the note that replaces this one>
+see-also: [<path or id>, …]
 ---
 ```
 
 **Required:** `type`.
 
-**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`, `authorship`.
+**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`, `llm`, `sensitivity`, `visibility`, `id`, `see-also`, `superseded_by`.
 
 **Wiki extension — `category`:** an optional field, usable on any concept (not just folder roots), that classifies what kind of content the note is — e.g. `project`, `book`, `topic`, `article`. Open-ended, not centrally registered, same tolerance rules as `type`.
 
-**Wiki extension — `authorship`:** an optional field recording how a note's text was produced, on a 1–5 scale: `1` fully LLM-generated/autonomous, `2` LLM-generated/human-directed (feedback loop, no direct human edits), `3` LLM-drafted/human-edited, `4` human-drafted/LLM-edited, `5` fully human-authored. See [Authorship](/frontmatter/authorship.md) for full guidance. Missing values are tolerated, same as `category`. When `authorship` is `1`–`4`, the note's provenance (prompt, model) is also recorded — inline for `1`, in a `.llm/` sidecar for `2`–`4`. See [LLM provenance](#llm-provenance) below.
+**Wiki extension — `llm`:** an optional map recording an LLM's relationship to the note, with three keys. `authorship` (1–5) records how the text was produced: `1` fully LLM-generated/autonomous, `2` LLM-generated/human-directed (feedback loop, no direct human edits), `3` LLM-drafted/human-edited, `4` human-drafted/LLM-edited, `5` fully human-authored. `review` (`unreviewed` | `reviewed` | `verified`) is the trust signal, kept separate from authorship: whether a human has read (`reviewed`) or fact-checked (`verified`) the note — absent means `unreviewed`, and it can be set even on fully human (`authorship: 5`) notes. `human-only-lock` (`true` | `false`) tells agents whether they may edit the note autonomously — `true` requires explicit human sign-off first. All keys are optional and tolerated missing, same as `category`. When `llm.authorship` is `1`–`4`, the note's detailed provenance (prompt, model) is also recorded — inline for `1`, in a `.llm/` sidecar for `2`–`4`. See [LLM field](/frontmatter/llm.md) for full guidance and [LLM provenance](#llm-provenance) below.
+
+**Wiki extension — `sensitivity`:** classifies how sensitive a note's content is, on a controlled scale: `public` (nothing sensitive, freely shareable), `internal` (not for public distribution, but nothing personal), `confidential` (contains personal data / PII or other sensitive information — the minimum for any note holding personal data), `restricted` (special-category or high-risk data: health, financial, biometric, credentials, government IDs, or otherwise legally protected). It is **required** on `type: person` notes and on `type: dataset` notes that contain personal information (minimum `confidential`), and optional elsewhere. Agents must not surface or transmit `restricted` notes without explicit human authorization. See [Sensitivity](/frontmatter/sensitivity.md).
+
+**Wiki extension — `visibility`:** controls how a note is surfaced within the wiki: `listed` (default — appears in `index.md` and search, agents may surface it), `unlisted` (readable if linked, but excluded from index generation and routine search), `hidden` (agents should not surface or expose it unless the human asks for it by name). Orthogonal to `sensitivity`: sensitivity is about the content, visibility about exposure. See [Visibility](/frontmatter/visibility.md).
+
+**Wiki extension — `id`:** an optional stable, unique-within-bundle identifier, assigned once and never changed even when the file is renamed or moved. It decouples a note's identity from its path, so `see-also` and `superseded_by` references survive renames. Recommended form is a short opaque slug (e.g. a date-prefixed base36 string or a ULID), not derived from the title. See [Id](/frontmatter/id.md).
+
+**Wiki extension — `superseded_by`:** marks a note as replaced by a newer one, pointing to the successor (bundle-relative path preferred, or an `id`). Presence flags the note as historical; consumers and agents should prefer the successor. Distinct from a `type: redirect` note (a thin pointer with no content of its own) — a superseded note keeps its content for history. See [Superseded by](/frontmatter/superseded_by.md).
+
+**Wiki extension — `see-also`:** a list of related concepts as bundle-relative paths (or `id`s) — a machine-readable, frontmatter-level relation complementing inline body links, so agents can traverse relationships without parsing prose. See [See also](/frontmatter/see-also.md).
 
 **Wiki extension — `resource`:** may be either a single URI string (the common case) or a YAML map of named URIs when a concept has more than one canonical link — e.g. a `type: person` note with several contact points and profiles, or an `article`-category note indexed under several venues (DOI, PMID, journal, proceedings, preprint):
 
@@ -116,7 +138,7 @@ Date headings MUST use ISO 8601 `YYYY-MM-DD`. The leading bold word (`**Update**
 
 ## LLM provenance
 
-Notes with LLM involvement in their text (`authorship` `1`–`4`) carry a durable record of *how* that text was produced — the prompt, model, and resulting authorship level. For `authorship: 1` this is a single inline block at the top of the note body; for `2`–`4` it moves to a sidecar concept with `type: llm-log`, stored in a reserved `.llm/` folder beside the note and named `<note>-llm.md`.
+Notes with LLM involvement in their text (`llm.authorship` `1`–`4`) carry a durable record of *how* that text was produced — the prompt, model, and resulting authorship level. For `llm.authorship: 1` this is a single inline block at the top of the note body; for `2`–`4` it moves to a sidecar concept with `type: llm-log`, stored in a reserved `.llm/` folder beside the note and named `<note>-llm.md`.
 
 `.llm/` is a reserved system folder: it is never listed in `index.md`, the `type: main` → `index.md`+`log.md` rule never applies to it, reserved-filename semantics are suspended inside it, and reserved files (`index.md`, `log.md`) get no sidecar. Entries are reverse-chronological with full ISO 8601 timestamps. This provenance is deliberately distinct from `log.md` — which records *what* changed, not *how* it was produced — and is a recommended convention, not a conformance requirement.
 
@@ -130,8 +152,9 @@ This wiki is OKF v0.1 conformant if:
 2. Every frontmatter block has a non-empty `type` field.
 3. `index.md` and `log.md`, where present, follow the structure in OKF §6 and §7.
 4. *(Wiki extension)* Every folder containing a `type: main` file has both an `index.md` and a `log.md`.
+5. *(Wiki extension)* Every `type: person` note, and every `type: dataset` note that contains personal information, has a `sensitivity` field.
 
-Missing optional fields, unknown `type`/`category` values, out-of-range `authorship` values, missing or partial LLM provenance (inline blocks or `.llm/` sidecars), and broken links are all tolerated — they do not break conformance. LLM provenance is a recommended convention, not a conformance requirement.
+Missing optional fields, unknown `type`/`category` values, unknown `sensitivity`/`visibility` values, out-of-range `llm.authorship` values, missing or partial LLM provenance (inline blocks or `.llm/` sidecars), and broken links or `see-also`/`superseded_by`/`id` references are all tolerated — they do not break conformance. LLM provenance is a recommended convention, not a conformance requirement; the `sensitivity` rule (5) is the only one of the new fields that affects conformance, and only for `person`/`dataset` notes.
 
 ## Reference
 

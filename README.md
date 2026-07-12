@@ -43,7 +43,7 @@ You don't have to adopt all of OKF at once. A sensible progression:
 
 **Stage 3 — Organize into folders with roots.** When a folder becomes a coherent unit (a project, a book, a subject area), give it a `type: main` root note named after the folder, plus an `index.md` listing its contents and a `log.md` recording changes.
 
-**Stage 4 — Track history and provenance.** Keep `log.md` files up to date (date-grouped, newest first) so you can see what changed and when. Use the `authorship` field (1–5) to record whether a note was written by you, an LLM, or somewhere in between — with `.llm/` sidecars capturing how AI-written text was produced.
+**Stage 4 — Track history and provenance.** Keep `log.md` files up to date (date-grouped, newest first) so you can see what changed and when. Use the `llm` field (`authorship` 1–5, plus `review` and `human-only-lock`) to record whether a note was written by you, an LLM, or somewhere in between, whether a human has vetted it, and whether agents may edit it — with `.llm/` sidecars capturing how AI-written text was produced.
 
 **Stage 5 — Full comprehensive use.** Rich `resource` links (DOIs, ORCIDs, contact points), consistent categories across the whole tree, complete logs and provenance, and cross-links throughout — a fully self-describing knowledge base that a human or an agent can traverse end to end.
 
@@ -54,7 +54,8 @@ Move up a stage only when the extra structure starts paying off. Nothing below y
 - Read [spec-okf.md](./spec-okf.md) before creating or editing notes — it's the source of truth, not this README.
 - Every note you create needs YAML frontmatter with a non-empty `type`. Add `title`, `description`, `tags`, `timestamp` where they're genuinely useful — don't pad them out.
 - Use `category` (project, book, topic, article, …) to classify what kind of content a note is, on any note, not just folder roots.
-- Use `authorship` (1–4) to record LLM vs. human provenance — see [frontmatter/authorship.md](./frontmatter/authorship.md). (For LLMs) Set it honestly to reflect your own involvement, don't default to fully-human.
+- Use the `llm` field (`authorship` 1–5, `review`, `human-only-lock`) to record LLM vs. human provenance, whether a human has vetted the note, and whether agents may edit it autonomously — see [frontmatter/llm.md](./frontmatter/llm.md). (For LLMs) Set `authorship` honestly to reflect your own involvement, don't default to fully-human, and don't self-certify `review`.
+- Set `sensitivity` on any note holding personal or protected data — it's required on `type: person` and personal-data `type: dataset` notes. Use `visibility` to keep notes out of indexes/search, and `human-only-lock: true` on notes agents shouldn't edit unattended — see [frontmatter/sensitivity.md](./frontmatter/sensitivity.md).
 - If a folder represents a coherent unit (project, book, topic…) and needs a root note, name that note after the folder itself and give it `type: main`. Creating a `type: main` note means the folder also needs an `index.md` and a `log.md` — create or update both.
 - When you add or change notes in a folder, add an entry to that folder's `log.md` (date-grouped, newest first, ISO 8601 dates).
 - Link related notes with normal markdown links; bundle-relative (`/path/to/note.md`) is preferred over relative paths.

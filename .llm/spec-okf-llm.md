@@ -1,10 +1,14 @@
 ---
 type: llm-log
 title: LLM log — spec-okf
-timestamp: 2026-07-11T22:00:00Z
+timestamp: 2026-07-11T23:30:00Z
 ---
 
 Provenance for [spec-okf.md](/spec-okf.md). Trail starts at the first LLM interaction recorded under this convention; earlier history predates it and is not backfilled.
+
+## 2026-07-11T23:30Z · claude-opus-4-8 · → authorship 2
+**Prompt:** "rework authorship into llm. Add new fields for review, visibility, id, superseded_by, see-also, / sensitivity: come up with keywords (required for notes with type:person or type:dataset with personal info) / llm: authorship 1-5, review: unreviewed/reviewed/verified, human-only-lock: true/false"
+**Change:** Replaced the standalone `authorship` scalar with an `llm` map (`authorship`, `review`, `human-only-lock`); added `sensitivity` (with a controlled vocabulary and a new conformance rule for `person`/`dataset` notes), `visibility`, `id`, `superseded_by`, and `see-also` as wiki extensions; updated the frontmatter example, recommended order, LLM-provenance section, and conformance list; set the spec's own `human-only-lock: true`.
 
 ## 2026-07-11T22:00Z · claude-opus-4-8 · → authorship 2
 **Prompt:** "Move the LLM related notes into an llm.md folder to keep the spec-okf.md concise. start an .llm/ folder in the process also to serve as an illustration"

@@ -4,15 +4,18 @@ category: meta
 title: LLM provenance
 description: How LLM-authored notes record the way their text was produced — inline for authorship 1, a type:llm-log sidecar under .llm/ for 2–4.
 tags: [okf, meta, authorship, llm]
-timestamp: 2026-07-11T22:00:00Z
-authorship: 2
+timestamp: 2026-07-11T23:30:00Z
+llm:
+  authorship: 2
+  review: reviewed
+see-also: [/frontmatter/llm.md, /spec-okf.md]
 ---
 
-Notes on how this wiki records LLM provenance, expanding the summary in [spec-okf.md](/spec-okf.md) and complementing [Authorship](/frontmatter/authorship.md).
+Notes on how this wiki records LLM provenance, expanding the summary in [spec-okf.md](/spec-okf.md) and complementing the [LLM field](/frontmatter/llm.md).
 
 # What LLM provenance is for
 
-The [`authorship`](/frontmatter/authorship.md) field is a single scalar: it says *that* an LLM was involved and roughly how directly, but not *what* was asked or *which* model produced the text. LLM provenance fills that gap. For any note with LLM involvement in its text — `authorship` `1` through `4` — the wiki keeps a durable record of how that text was produced: the prompt, the model, and the resulting authorship level.
+The [`llm.authorship`](/frontmatter/llm.md) value is a single scalar: it says *that* an LLM was involved and roughly how directly, but not *what* was asked or *which* model produced the text. LLM provenance fills that gap. For any note with LLM involvement in its text — `llm.authorship` `1` through `4` — the wiki keeps a durable record of how that text was produced: the prompt, the model, and the resulting authorship level.
 
 This is a provenance record, not a quality signal and not a changelog. Its job is to let a later reader reconstruct how a note came to say what it says. Its relationship to [`log.md`](/spec-okf.md) is defined under *Boundary with `log.md`* below.
 

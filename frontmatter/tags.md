@@ -4,8 +4,10 @@ category: meta
 title: Tags
 description: How the tags field is used for free-form keywords and cross-cutting association in this wiki.
 tags: [okf, meta, tags]
-timestamp: 2026-07-11T20:00:00Z
-authorship: 2
+timestamp: 2026-07-11T23:30:00Z
+llm:
+  authorship: 2
+  review: reviewed
 ---
 
 Notes on the `tags` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
@@ -22,7 +24,7 @@ Notes on the `tags` field, expanding on its definition in [spec-okf.md](/spec-ok
 
 # Conventions
 
-* `tags` is optional, like `category` and `authorship` — missing or empty values don't break conformance (per spec-okf.md's conformance rules).
+* `tags` is optional, like `category` and `llm` — missing or empty values don't break conformance (per spec-okf.md's conformance rules).
 * Written as a YAML flow list: `tags: [wiki, okf, meta]`.
 * Keep tags lowercase and hyphenated for multi-word concepts (e.g. `knowledge-catalog`, not `Knowledge Catalog`), so they stay greppable and consistent.
 * Tags are open-ended and not centrally registered — there's no fixed vocabulary to conform to, unlike the `category` table in [Categories](/frontmatter/category.md).
@@ -32,4 +34,4 @@ Notes on the `tags` field, expanding on its definition in [spec-okf.md](/spec-ok
 
 * Favor a handful of specific tags over many generic ones — 2–4 tags that narrow down the note are more useful than a long list of broad terms.
 * Don't tag with the same word already carried by `type` or `category` — it's redundant (e.g. a `type: main` note doesn't also need a `main` tag).
-* Tags describe the note's content, not its provenance or workflow state — use `authorship` for provenance, not a tag like `llm-generated`.
+* Tags describe the note's content, not its provenance or workflow state — use the `llm` field's `authorship` for provenance, not a tag like `llm-generated`.

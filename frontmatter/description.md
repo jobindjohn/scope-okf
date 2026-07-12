@@ -4,8 +4,10 @@ category: meta
 title: Description
 description: How the description field records a one-line summary of a concept.
 tags: [okf, meta, description]
-timestamp: 2026-07-11T20:00:00Z
-authorship: 2
+timestamp: 2026-07-11T23:30:00Z
+llm:
+  authorship: 2
+  review: reviewed
 ---
 
 Notes on the `description` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
