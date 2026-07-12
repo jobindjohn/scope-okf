@@ -51,6 +51,8 @@ Move up a stage only when the extra structure starts paying off. Nothing below y
 
 ## Instructions for Humans and LLMs
 
+For a quick operational reference, [okf-agent-guide.md](./okf-agent-guide.md) is a one-page distillation of the rules an agent needs when creating or editing notes here — handy to hand to an LLM directly. The points below cover the same ground; [spec-okf.md](./spec-okf.md) remains the source of truth.
+
 - Read [spec-okf.md](./spec-okf.md) before creating or editing notes — it's the source of truth, not this README.
 - Every note you create needs YAML frontmatter with a non-empty `type`. Add `title`, `description`, `tags`, `timestamp` where they're genuinely useful — don't pad them out.
 - Use `category` (project, book, topic, article, …) to classify what kind of content a note is, on any note, not just folder roots.
