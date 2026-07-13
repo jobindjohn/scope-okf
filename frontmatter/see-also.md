@@ -12,7 +12,7 @@ llm:
 see-also: [/frontmatter/id.md, /frontmatter/superseded_by.md]
 ---
 
-Notes on the `see-also` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `see-also` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `see-also` is for
 
@@ -37,7 +37,7 @@ see-also: [/frontmatter/id.md, /frontmatter/superseded_by.md]
 
 # Conventions
 
-* `see-also` is optional, and unresolvable entries are tolerated (per spec-okf.md's conformance rules) — but keep it accurate.
+* `see-also` is optional, and unresolvable entries are tolerated (per scope-okf.md's conformance rules) — but keep it accurate.
 * Keep it short — a handful of the most relevant notes, not an exhaustive dump. If everything is related, nothing is.
 * The relation is conceptually two-way; there's no requirement that the other note link back, but adding the reciprocal `see-also` makes traversal more reliable.
 * Prefer paths for readability; use `id`s where the target is likely to be renamed or moved.

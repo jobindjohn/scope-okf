@@ -12,7 +12,7 @@ llm:
 see-also: [/frontmatter/see-also.md, /frontmatter/superseded_by.md, /frontmatter/title.md]
 ---
 
-Notes on the `id` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `id` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `id` is for
 
@@ -34,7 +34,7 @@ The wiki normally uses the filename as identity, which is why renaming a note ri
 
 # Conventions
 
-* `id` is optional — a note without one is still conformant, and is simply identified by its path (per spec-okf.md's conformance rules).
+* `id` is optional — a note without one is still conformant, and is simply identified by its path (per scope-okf.md's conformance rules).
 * Once assigned, treat `id` as write-once. If you must correct a typo'd id, treat it like a rename: update every reference.
 * Backfilling ids onto existing notes is fine but not required — add them lazily, starting with notes that are linked to or likely to move.
 

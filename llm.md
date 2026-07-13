@@ -8,16 +8,16 @@ timestamp: 2026-07-11T23:30:00Z
 llm:
   authorship: 2
   review: reviewed
-see-also: [/frontmatter/llm.md, /spec-okf.md]
+see-also: [/frontmatter/llm.md, /scope-okf.md]
 ---
 
-Notes on how this wiki records LLM provenance, expanding the summary in [spec-okf.md](/spec-okf.md) and complementing the [LLM field](/frontmatter/llm.md).
+Notes on how this wiki records LLM provenance, expanding the summary in [scope-okf.md](/scope-okf.md) and complementing the [LLM field](/frontmatter/llm.md).
 
 # What LLM provenance is for
 
 The [`llm.authorship`](/frontmatter/llm.md) value is a single scalar: it says *that* an LLM was involved and roughly how directly, but not *what* was asked or *which* model produced the text. LLM provenance fills that gap. For any note with LLM involvement in its text — `llm.authorship` `1` through `4` — the wiki keeps a durable record of how that text was produced: the prompt, the model, and the resulting authorship level.
 
-This is a provenance record, not a quality signal and not a changelog. Its job is to let a later reader reconstruct how a note came to say what it says. Its relationship to [`log.md`](/spec-okf.md) is defined under *Boundary with `log.md`* below.
+This is a provenance record, not a quality signal and not a changelog. Its job is to let a later reader reconstruct how a note came to say what it says. Its relationship to [`log.md`](/scope-okf.md) is defined under *Boundary with `log.md`* below.
 
 # Where provenance lives
 
@@ -27,10 +27,10 @@ Where the record lives depends on the authorship level:
 * **`authorship: 2`–`4`** — a human feedback loop exists. Provenance moves to a dedicated sidecar concept with `type: llm-log`, stored in a `.llm/` folder beside the note and named after the note with a `-llm` suffix.
 
 ```
-projects/spec-okf/
-├── spec-okf.md          # the concept — authorship: 2
+projects/scope-okf/
+├── scope-okf.md          # the concept — authorship: 2
 ├── .llm/
-│   └── spec-okf-llm.md  # type: llm-log — provenance for spec-okf.md
+│   └── scope-okf-llm.md  # type: llm-log — provenance for scope-okf.md
 ├── index.md
 └── log.md
 ```
@@ -62,7 +62,7 @@ A `type: llm-log` file needs only `type` in its frontmatter; `title` and a `time
 ```markdown
 ---
 type: llm-log
-title: LLM log — spec-okf
+title: LLM log — scope-okf
 timestamp: 2026-07-11T20:30:00Z
 ---
 

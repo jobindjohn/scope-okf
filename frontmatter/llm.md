@@ -12,7 +12,7 @@ llm:
 see-also: [/frontmatter/type.md, /llm.md, /frontmatter/sensitivity.md]
 ---
 
-Notes on the `llm` field, expanding on its definition in [spec-okf.md](/spec-okf.md). For the separate `.llm/` provenance-sidecar system this field points into, see [LLM provenance](/llm.md).
+Notes on the `llm` field, expanding on its definition in [scope-okf.md](/scope-okf.md). For the separate `.llm/` provenance-sidecar system this field points into, see [LLM provenance](/llm.md).
 
 # What `llm` is for
 
@@ -59,11 +59,11 @@ The trust signal, deliberately separate from `authorship`. Authorship says who p
 
 ## `human-only-lock` (true | false)
 
-Tells agents whether they may edit the note autonomously. `true` means an agent MUST get explicit human sign-off before changing the note; `false` (or absent) means agents may edit it under the normal conventions. Use it on notes whose wording is load-bearing — the spec itself ([spec-okf.md](/spec-okf.md) carries `human-only-lock: true`), policy notes, or anything where an unattended agent edit would be costly.
+Tells agents whether they may edit the note autonomously. `true` means an agent MUST get explicit human sign-off before changing the note; `false` (or absent) means agents may edit it under the normal conventions. Use it on notes whose wording is load-bearing — the spec itself ([scope-okf.md](/scope-okf.md) carries `human-only-lock: true`), policy notes, or anything where an unattended agent edit would be costly.
 
 # Conventions
 
-* Every key is optional, like `category` and `tags` — a missing `llm` block, or missing sub-keys, don't break conformance (per spec-okf.md's conformance rules). An out-of-range `authorship` or unknown `review` value is tolerated too.
+* Every key is optional, like `category` and `tags` — a missing `llm` block, or missing sub-keys, don't break conformance (per scope-okf.md's conformance rules). An out-of-range `authorship` or unknown `review` value is tolerated too.
 * The block reflects the *current* state of the note, not its full history. Update `authorship` to whatever level best describes the latest substantive pass; move `review` back to `unreviewed` if a note is materially rewritten after being reviewed.
 * Set or update `llm` at the same time you'd update `timestamp` — when authorship, review status, or the lock materially changes, bump both together.
 * Don't let `llm` become a junk drawer. It is for the LLM's involvement and what agents may do here. Content-classification goes in `category`, subject keywords in `tags`, and note-level concerns that apply regardless of author — freshness, sensitivity, superseding — in their own fields.

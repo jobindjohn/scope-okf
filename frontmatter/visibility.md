@@ -12,7 +12,7 @@ llm:
 see-also: [/frontmatter/sensitivity.md, /index.md]
 ---
 
-Notes on the `visibility` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `visibility` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `visibility` is for
 
@@ -37,7 +37,7 @@ A note can be `sensitivity: confidential, visibility: listed` (surfaced internal
 
 # Conventions
 
-* `visibility` is optional — a missing value means `listed`, and unknown values are tolerated (per spec-okf.md's conformance rules).
+* `visibility` is optional — a missing value means `listed`, and unknown values are tolerated (per scope-okf.md's conformance rules).
 * `unlisted` notes are still first-class concepts — they just don't appear in generated indexes. Consumers that build `index.md` should skip `unlisted` and `hidden` notes.
 * `hidden` is a surfacing hint, not an access control — pair it with `sensitivity` when the concern is privacy, not just clutter.
 

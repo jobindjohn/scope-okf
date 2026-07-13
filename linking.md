@@ -9,10 +9,10 @@ timestamp: 2026-07-12T00:00:00Z
 llm:
   authorship: 2
   review: reviewed
-see-also: [/spec-okf.md, /frontmatter/aliases.md, /frontmatter/id.md, /frontmatter/see-also.md]
+see-also: [/scope-okf.md, /frontmatter/aliases.md, /frontmatter/id.md, /frontmatter/see-also.md]
 ---
 
-Notes on how this wiki links notes together, expanding the summary in [spec-okf.md](/spec-okf.md).
+Notes on how this wiki links notes together, expanding the summary in [scope-okf.md](/scope-okf.md).
 
 # Two link forms
 
@@ -36,7 +36,7 @@ First match wins. A reference that resolves to nothing, or stays ambiguous after
 
 **Normalization.** Name matching (basename, `title`, `aliases`) is **case-folded**, and `-`, space, and `_` are treated as equivalent, so `[[see also]]`, `[[See-Also]]`, and `[[see_also]]` all match `see-also.md`. This keeps a bundle behaving the same across case-sensitive and case-insensitive filesystems.
 
-**Excluded from the resolver.** Reserved filenames (`index.md`, `log.md`) and everything under the reserved `.llm/` folder are not concepts and never enter the name index, so `[[index]]` has no target. A `type: main` file (named after its folder, e.g. `spec-okf.md`) *is* an ordinary target: `[[spec-okf]]` resolves normally.
+**Excluded from the resolver.** Reserved filenames (`index.md`, `log.md`) and everything under the reserved `.llm/` folder are not concepts and never enter the name index, so `[[index]]` has no target. A `type: main` file (named after its folder, e.g. `scope-okf.md`) *is* an ordinary target: `[[scope-okf]]` resolves normally.
 
 # Wikilink syntax
 

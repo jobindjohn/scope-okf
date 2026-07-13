@@ -12,7 +12,7 @@ llm:
 see-also: [/frontmatter/id.md, /frontmatter/type.md, /frontmatter/see-also.md]
 ---
 
-Notes on the `superseded_by` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `superseded_by` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `superseded_by` is for
 
@@ -34,7 +34,7 @@ Use `superseded_by` when the old note is worth keeping and reading; use `redirec
 
 # Conventions
 
-* `superseded_by` is optional; a dangling target (a path or id that doesn't resolve) is tolerated (per spec-okf.md's conformance rules), though it should be fixed.
+* `superseded_by` is optional; a dangling target (a path or id that doesn't resolve) is tolerated (per scope-okf.md's conformance rules), though it should be fixed.
 * Set it in the same edit that creates or designates the successor, and bump `timestamp`.
 * Consider also lowering the old note's [`visibility`](/frontmatter/visibility.md) to `unlisted` so the superseded note stops surfacing in indexes and search.
 * Record the supersession in the folder's `log.md` (as a `**Deprecation**` entry) so the change is visible in history.

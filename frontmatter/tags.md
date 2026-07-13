@@ -10,7 +10,7 @@ llm:
   review: reviewed
 ---
 
-Notes on the `tags` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `tags` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `tags` is for
 
@@ -24,7 +24,7 @@ Notes on the `tags` field, expanding on its definition in [spec-okf.md](/spec-ok
 
 # Conventions
 
-* `tags` is optional, like `category` and `llm` — missing or empty values don't break conformance (per spec-okf.md's conformance rules).
+* `tags` is optional, like `category` and `llm` — missing or empty values don't break conformance (per scope-okf.md's conformance rules).
 * Written as a YAML flow list: `tags: [wiki, okf, meta]`.
 * Keep tags lowercase and hyphenated for multi-word concepts (e.g. `knowledge-catalog`, not `Knowledge Catalog`), so they stay greppable and consistent.
 * Tags are open-ended and not centrally registered — there's no fixed vocabulary to conform to, unlike the `category` table in [Categories](/frontmatter/category.md).

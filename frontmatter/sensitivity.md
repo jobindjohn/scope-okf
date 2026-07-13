@@ -13,7 +13,7 @@ sensitivity: public
 see-also: [/frontmatter/visibility.md, /frontmatter/type.md]
 ---
 
-Notes on the `sensitivity` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `sensitivity` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `sensitivity` is for
 
@@ -34,7 +34,7 @@ The scale is ordered from least to most sensitive. When in doubt between two lev
 
 # When it's required
 
-`sensitivity` is optional on most notes, but **required** (a conformance rule — see spec-okf.md §Conformance) on:
+`sensitivity` is optional on most notes, but **required** (a conformance rule — see scope-okf.md §Conformance) on:
 
 * every `type: person` note — these hold contact details and identifiers by design; minimum `confidential`;
 * every `type: dataset` note that contains personal information — minimum `confidential`, or `restricted` if the data is special-category.

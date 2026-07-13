@@ -10,11 +10,11 @@ llm:
   review: reviewed
 ---
 
-Notes on the `description` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `description` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `description` is for
 
-`description` is a one-line summary of what a concept covers. It's what `index.md` entries are pulled from (per spec-okf.md's index-file convention) and what a reader should see to decide whether to open the note.
+`description` is a one-line summary of what a concept covers. It's what `index.md` entries are pulled from (per scope-okf.md's index-file convention) and what a reader should see to decide whether to open the note.
 
 # description vs. other fields
 
@@ -24,7 +24,7 @@ Notes on the `description` field, expanding on its definition in [spec-okf.md](/
 
 # Conventions
 
-* `description` is optional, like `category` and `tags` — missing values don't break conformance (per spec-okf.md's conformance rules).
+* `description` is optional, like `category` and `tags` — missing values don't break conformance (per scope-okf.md's conformance rules).
 * One sentence, no trailing period required either way — pick one style and stay consistent within a folder (this wiki omits periods).
 * Write it as plain text, not a markdown link or list.
 * Should be meaningful out of context — avoid descriptions like "Notes on this topic" that could apply to any note.

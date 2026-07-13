@@ -10,7 +10,7 @@ llm:
   review: reviewed
 ---
 
-Notes on the `resource` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `resource` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `resource` is for
 
@@ -51,7 +51,7 @@ resource:
 
 # Conventions
 
-* `resource` is optional, like `category` and `tags` — missing values don't break conformance (per spec-okf.md's conformance rules).
+* `resource` is optional, like `category` and `tags` — missing values don't break conformance (per scope-okf.md's conformance rules).
 * Use single, stable URIs — prefer a DOI or permanent URL over a search-result or session-specific link; prefer the most canonical identifier available: DOI > publisher/official URL > archive/mirror URL.
 * Write single values as a plain string, not a markdown link: `resource: https://example.com/thing`, not `resource: "[thing](https://example.com/thing)"`.
 * For the map form, use URI schemes where they exist (`mailto:` for email, `tel:` for phone) rather than bare addresses — it keeps every value a genuine URI, not just the web ones.

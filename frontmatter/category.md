@@ -10,7 +10,7 @@ llm:
   review: reviewed
 ---
 
-Notes on the `category` field, expanding on its definition in [spec-okf.md](/spec-okf.md).
+Notes on the `category` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
 
 # What `category` is for
 
@@ -24,11 +24,11 @@ Notes on the `category` field, expanding on its definition in [spec-okf.md](/spe
 
 # Conventions
 
-`category` is open-ended and not centrally registered — unknown or missing values don't break conformance (per spec-okf.md's conformance rules). That said, keeping the vocabulary small and reused makes the wiki more navigable. Categories seen so far in this wiki:
+`category` is open-ended and not centrally registered — unknown or missing values don't break conformance (per scope-okf.md's conformance rules). That said, keeping the vocabulary small and reused makes the wiki more navigable. Categories seen so far in this wiki:
 
 | Category  | Meaning                                                   |
 |-----------|------------------------------------------------------------|
-| `project` | A body of work with its own goals and folder, e.g. `spec-okf` itself. |
+| `project` | A body of work with its own goals and folder, e.g. `scope-okf` itself. |
 | `book`    | Notes about a book — summary, highlights, reactions.       |
 | `topic`   | A standing subject area note, not tied to one project.     |
 | `article` | Notes on or reproductions of a single article/paper/post.  |
