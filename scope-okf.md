@@ -5,10 +5,10 @@ title: scope-okf
 description: Specs for Wiki
 category: project
 tags: [wiki, okf, meta]
-timestamp: 2026-07-12T00:00:00Z
+timestamp: 2026-07-13T16:04:46Z
 llm:
   authorship: 2
-  review: unreviewed
+  review: reviewed
   human-only-lock: true
 ---
 
@@ -169,4 +169,6 @@ Missing optional fields, unknown `type`/`category` values, unknown `sensitivity`
 
 ## Reference
 
-Full specification: https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md
+Full specification: https://github.com/jobindjohn/scope-okf
+
+Base format — Open Knowledge Format (OKF) v0.1: https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md

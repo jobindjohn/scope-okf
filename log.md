@@ -2,6 +2,8 @@
 
 ## 2026-07-13
 
+* **Update**: Marked [scope-okf](/scope-okf.md) `review: reviewed` and repointed its end-of-document "Full specification" reference to the project repo (`https://github.com/jobindjohn/scope-okf`), keeping OKF v0.1 as the credited base format. Human-directed edit to a `human-only-lock: true` note; recorded in `.llm/scope-okf-llm.md`.
+
 * **Update**: Set [scope-okf-SPEC](/scope-okf-SPEC.md)'s `resource` to the project repo (`https://github.com/jobindjohn/scope-okf`). After human review, bumped `llm.authorship` 1→2 and `review`→`reviewed`, and migrated provenance from the note's inline block into a new `.llm/scope-okf-SPEC-llm.md` sidecar.
 
 * **Creation**: Added [scope-okf-SPEC](/scope-okf-SPEC.md) — a comprehensive, self-contained single-file specification for LLMs, consolidating [scope-okf](/scope-okf.md), [linking](/linking.md), [llm](/llm.md), and every `frontmatter/*.md` field doc into one file (`authorship: 1`, `unreviewed`). Because the chosen name case-collides with the existing one-page `scope-okf-spec.md` on a case-insensitive filesystem, the sync layer renamed the old file to `scope-okf-spec-.md`; updated the index links to match.

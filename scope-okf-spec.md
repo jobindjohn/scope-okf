@@ -3,7 +3,7 @@ type: note
 id: 20260713-spec
 category: meta
 title: scope-okf — Single-File Specification (LLM edition)
-description: Complete, self-contained specification of the scope-okf wiki format, consolidated into one file so an LLM can read, create, and edit notes without following any links.
+description: Complete, self-contained specification of the scope-okf, for human-agentic knowledge wiki workflows and markdown notes
 tags: [okf, meta, spec, llm]
 timestamp: 2026-07-13T16:04:46Z
 llm:

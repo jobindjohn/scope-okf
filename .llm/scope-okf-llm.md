@@ -1,10 +1,14 @@
 ---
 type: llm-log
 title: LLM log — scope-okf
-timestamp: 2026-07-12T00:00:00Z
+timestamp: 2026-07-13T16:04:46Z
 ---
 
 Provenance for [scope-okf.md](/scope-okf.md). Trail starts at the first LLM interaction recorded under this convention; earlier history predates it and is not backfilled.
+
+## 2026-07-13T16:04Z · claude-opus-4-8 · → authorship 2
+**Prompt:** "scope-okf.md is reviewed. Update the reference to the full specification at the end of the document also"
+**Change:** Repointed the end-of-document "Full specification" reference to the project repo (https://github.com/jobindjohn/scope-okf), keeping OKF v0.1 as the credited base format; set `review`→`reviewed` per human review and bumped `timestamp`.
 
 ## 2026-07-12T00:10Z · claude-opus-4-8 · → authorship 2
 **Prompt:** "Right now linking is mentioned in the spec-okf.md. Better to have another file called linking.md"
