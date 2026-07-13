@@ -1,7 +1,7 @@
 ---
 type: main
 id: 20260711-9f2a
-title: spec-okf
+title: scope-okf
 description: Specs for Wiki
 category: project
 tags: [wiki, okf, meta]
@@ -104,8 +104,8 @@ Not every folder needs one, and nested subfolders don't inherit a requirement fo
 
 ```
 projects/
-└── spec-okf/
-    ├── spec-okf.md      # type: main — root concept for this folder
+└── scope-okf/
+    ├── scope-okf.md      # type: main — root concept for this folder
     ├── index.md
     ├── log.md
     └── ...other concepts
