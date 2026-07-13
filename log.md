@@ -2,6 +2,10 @@
 
 ## 2026-07-13
 
+* **Update**: Set [scope-okf-SPEC](/scope-okf-SPEC.md)'s `resource` to the project repo (`https://github.com/jobindjohn/scope-okf`). After human review, bumped `llm.authorship` 1→2 and `review`→`reviewed`, and migrated provenance from the note's inline block into a new `.llm/scope-okf-SPEC-llm.md` sidecar.
+
+* **Creation**: Added [scope-okf-SPEC](/scope-okf-SPEC.md) — a comprehensive, self-contained single-file specification for LLMs, consolidating [scope-okf](/scope-okf.md), [linking](/linking.md), [llm](/llm.md), and every `frontmatter/*.md` field doc into one file (`authorship: 1`, `unreviewed`). Because the chosen name case-collides with the existing one-page `scope-okf-spec.md` on a case-insensitive filesystem, the sync layer renamed the old file to `scope-okf-spec-.md`; updated the index links to match.
+
 * **Rename**: Renamed `okf-agent-guide.md` → [scope-okf-spec](/scope-okf-spec.md); updated the link and text in README.md accordingly.
 
 * **Rename**: Renamed the wiki/project from `spec-okf` to `scope-okf`. Root concept `spec-okf.md` → [scope-okf](/scope-okf.md) (`id` unchanged: `20260711-9f2a`); sidecar `.llm/spec-okf-llm.md` → `.llm/scope-okf-llm.md`. Updated all internal links and mentions across README.md, okf-agent-guide.md, linking.md, llm.md, every `frontmatter/*.md` field doc, and this log's historical entries.
