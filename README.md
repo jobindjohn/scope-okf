@@ -1,10 +1,10 @@
-# spec-okf
+# scope-okf
 
 ## Overview
 
-**spec-okf is a specification for a personal wiki** — a small set of conventions for keeping notes, projects, and reference material as plain markdown files in a git folder, with no app or database required. It is not itself the wiki; it's the rulebook you follow to build and maintain one. Every note ends up a `.md` text file you can read, edit, and search with any tool, and a light layer of convention (a `type:` field at the top of each file, a couple of reserved filenames like `index.md` and `log.md`) makes the collection self-describing, so both you and an AI agent can navigate and add to it reliably.
+**scope-okf is a specification for a personal wiki for agentic workflows** — a small set of conventions for keeping notes, projects, and reference material as plain markdown files in a git folder, with no app or database required. It is not itself the wiki; it's the rulebook you follow to build and maintain one. Every note ends up a `.md` text file you can read, edit, and search with any tool, and a light layer of convention (a `type:` field at the top of each file, a couple of reserved filenames like `index.md` and `log.md`) makes the collection self-describing, so both you and an AI agent can navigate and add to it reliably.
 
-The conventions build on the [Open Knowledge Format (OKF)](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md), extended with a few wiki-specific rules. The full specification lives in [spec-okf.md](./spec-okf.md), which is the source of truth; this README is just an on-ramp.
+The conventions build on the [Open Knowledge Format (OKF)](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md), extended with a few wiki-specific rules. The full specification lives in [scope-okf.md](./scope-okf.md), which is the source of truth; this README is just an on-ramp.
 
 **Why markdown and OKF.** Notes, projects, and reference material tend to get scattered across apps that don't talk to each other and don't survive well over time. Markdown in git avoids that: it's readable without tooling, diffable, portable, and works equally well whether a human or an agent is reading or writing it. OKF adds just enough structure to make the content self-describing without locking anything into a specific tool or schema.
 
@@ -31,7 +31,7 @@ The fastest way to begin — you can add more structure later:
 
 3. **Browse.** Open any folder's `index.md` (a plain list of what's inside) to find your way around, or read a folder's `type: main` note if it has one.
 
-That's enough to be useful on day one. When you want the fuller conventions — categories, provenance tracking, folder roots, logs — read [spec-okf.md](./spec-okf.md), which is the source of truth.
+That's enough to be useful on day one. When you want the fuller conventions — categories, provenance tracking, folder roots, logs — read [scope-okf.md](./scope-okf.md), which is the source of truth.
 
 ## Roadmap: from simple to comprehensive
 
@@ -51,9 +51,9 @@ Move up a stage only when the extra structure starts paying off. Nothing below y
 
 ## Instructions for Humans and LLMs
 
-For a quick operational reference, [okf-agent-guide.md](./okf-agent-guide.md) is a one-page distillation of the rules an agent needs when creating or editing notes here — handy to hand to an LLM directly. The points below cover the same ground; [spec-okf.md](./spec-okf.md) remains the source of truth.
+For a quick operational reference, [scope-okf-spec.md](./scope-okf-spec.md) is a one-page distillation of the rules an agent needs when creating or editing notes here — handy to hand to an LLM directly. The points below cover the same ground; [scope-okf.md](./scope-okf.md) remains the source of truth.
 
-- Read [spec-okf.md](./spec-okf.md) before creating or editing notes — it's the source of truth, not this README.
+- Read [scope-okf.md](./scope-okf.md) before creating or editing notes — it's the source of truth, not this README.
 - Every note you create needs YAML frontmatter with a non-empty `type`. Add `title`, `description`, `tags`, `timestamp` where they're genuinely useful — don't pad them out.
 - Use `category` (project, book, topic, article, …) to classify what kind of content a note is, on any note, not just folder roots.
 - Use the `llm` field (`authorship` 1–5, `review`, `human-only-lock`) to record LLM vs. human provenance, whether a human has vetted the note, and whether agents may edit it autonomously — see [frontmatter/llm.md](./frontmatter/llm.md). (For LLMs) Set `authorship` honestly to reflect your own involvement, don't default to fully-human, and don't self-certify `review`.
@@ -61,4 +61,4 @@ For a quick operational reference, [okf-agent-guide.md](./okf-agent-guide.md) is
 - If a folder represents a coherent unit (project, book, topic…) and needs a root note, name that note after the folder itself and give it `type: main`. Creating a `type: main` note means the folder also needs an `index.md` and a `log.md` — create or update both.
 - When you add or change notes in a folder, add an entry to that folder's `log.md` (date-grouped, newest first, ISO 8601 dates).
 - Link related notes with normal markdown links; bundle-relative (`/path/to/note.md`) is preferred over relative paths.
-- (For LLMs) Don't add new required fields, reserved filenames, or conformance rules to spec-okf.md on your own — propose the change, wait for explicit go-ahead, then write it.
+- (For LLMs) Don't add new required fields, reserved filenames, or conformance rules to scope-okf.md on your own — propose the change, wait for explicit go-ahead, then write it.
