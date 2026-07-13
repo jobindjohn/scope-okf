@@ -1,6 +1,12 @@
-# Agent Instructions — spec-okf Wiki
+---
+type: note
+title: scope-okf-spec
+timestamp: 2026-07-13T15:30:35Z
+---
 
-This wiki is an [OKF v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) knowledge bundle. Full rules: [spec-okf.md](/spec-okf.md). Follow the essentials below when reading or editing notes.
+# Agent Instructions — scope-okf Wiki
+
+This wiki is an [OKF v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) knowledge bundle. Full rules: [scope-okf.md](/scope-okf.md). Follow the essentials below when reading or editing notes.
 
 ## What files are
 - Any `.md` is a **concept** doc **except** `index.md` (directory listing, no frontmatter) and `log.md` (update log).

@@ -2,6 +2,8 @@
 
 ## 2026-07-13
 
+* **Rename**: Renamed `okf-agent-guide.md` → [scope-okf-spec](/scope-okf-spec.md); updated the link and text in README.md accordingly.
+
 * **Rename**: Renamed the wiki/project from `spec-okf` to `scope-okf`. Root concept `spec-okf.md` → [scope-okf](/scope-okf.md) (`id` unchanged: `20260711-9f2a`); sidecar `.llm/spec-okf-llm.md` → `.llm/scope-okf-llm.md`. Updated all internal links and mentions across README.md, okf-agent-guide.md, linking.md, llm.md, every `frontmatter/*.md` field doc, and this log's historical entries.
 
 ## 2026-07-12
