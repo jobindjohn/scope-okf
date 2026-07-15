@@ -5,9 +5,8 @@ title: LLM provenance
 description: How LLM-authored notes record the way their text was produced — inline for authorship 1, a type:llm-log sidecar under .llm/ for 2–4.
 tags: [okf, meta, authorship, llm]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 see-also: [/frontmatter/llm.md, /scope-okf.md]
 ---
 
@@ -15,7 +14,7 @@ Notes on how this wiki records LLM provenance, expanding the summary in [scope-o
 
 # What LLM provenance is for
 
-The [`llm.authorship`](/frontmatter/llm.md) value is a single scalar: it says *that* an LLM was involved and roughly how directly, but not *what* was asked or *which* model produced the text. LLM provenance fills that gap. For any note with LLM involvement in its text — `llm.authorship` `1` through `4` — the wiki keeps a durable record of how that text was produced: the prompt, the model, and the resulting authorship level.
+The [`llm-authorship`](/frontmatter/llm.md) value is a single scalar: it says *that* an LLM was involved and roughly how directly, but not *what* was asked or *which* model produced the text. LLM provenance fills that gap. For any note with LLM involvement in its text — `llm-authorship` `1` through `4` — the wiki keeps a durable record of how that text was produced: the prompt, the model, and the resulting authorship level.
 
 This is a provenance record, not a quality signal and not a changelog. Its job is to let a later reader reconstruct how a note came to say what it says. Its relationship to [`log.md`](/scope-okf.md) is defined under *Boundary with `log.md`* below.
 
@@ -57,7 +56,7 @@ Provenance then lives in exactly one place. Because the inline block already use
 
 # `llm-log` file format
 
-A `type: llm-log` file needs only `type` in its frontmatter; `title` and a `timestamp` (the last interaction) are useful. It carries **no `authorship`** of its own — an LLM logging itself has no meaningful provenance level. Its body is a reverse-chronological list of interactions, newest first:
+A `type: llm-log` file needs only `type` in its frontmatter; `title` and a `timestamp` (the last interaction) are useful. It carries **no `llm-authorship`** of its own — an LLM logging itself has no meaningful provenance level. Its body is a reverse-chronological list of interactions, newest first:
 
 ```markdown
 ---
@@ -80,7 +79,7 @@ Each entry heading carries a full ISO 8601 timestamp, the model identifier, and 
 # What does and doesn't produce an entry
 
 * Only LLM interactions produce entries. Human-only edits generate none — those show up in git history and in `log.md`. A sidecar is therefore a partial history by design: a gap doesn't mean missing data.
-* A sidecar persists even if a note is later fully rewritten by a human (`authorship: 5`). It simply stops gaining entries; provenance history is not deleted.
+* A sidecar persists even if a note is later fully rewritten by a human (`llm-authorship: 5`). It simply stops gaining entries; provenance history is not deleted.
 * Don't retroactively backfill provenance for interactions you're not sure of. Record what you can attest to and start the trail there, rather than reconstructing a history you don't have.
 
 # Boundary with `log.md`

@@ -6,10 +6,9 @@ title: scope-okf — Single-File Specification (LLM edition)
 description: Complete, self-contained specification of the scope-okf, for human-agentic knowledge wiki workflows and markdown notes
 tags: [okf, meta, spec, llm]
 timestamp: 2026-07-13T16:04:46Z
-llm:
-  authorship: 2
-  review: reviewed
-  human-only-lock: false
+llm-authorship: 2
+llm-review: reviewed
+llm-human-only-lock: false
 resource: https://github.com/jobindjohn/scope-okf
 see-also: [/scope-okf.md, /linking.md, /llm.md]
 ---
@@ -31,7 +30,7 @@ A scope-okf wiki is a directory tree of plain-text **markdown files in a git fol
 1. **Just notes.** `.md` files with only `type` in frontmatter. This alone is a working wiki.
 2. **Describe your notes.** Add `title`, `description`, `tags`, `category` where they earn their place.
 3. **Organize into folders with roots.** Give a coherent folder a `type: main` root note (named after the folder) plus `index.md` and `log.md`.
-4. **Track history and provenance.** Keep `log.md` current; use the `llm` block and `.llm/` sidecars for provenance.
+4. **Track history and provenance.** Keep `log.md` current; use the `llm-authorship`/`llm-review`/`llm-human-only-lock` fields and `.llm/` sidecars for provenance.
 5. **Full use.** Rich `resource` links, consistent categories, complete logs and provenance, cross-links throughout.
 
 ---
@@ -65,10 +64,9 @@ description: <one-line summary>     # Optional
 resource: <URI, or map of named URIs>  # Optional canonical link(s) to the underlying asset
 tags: [<tag>, <tag>, …]            # Optional free-form keywords
 timestamp: <ISO 8601 datetime>     # Optional last-modified time
-llm:                               # Optional LLM provenance + trust block
-  authorship: <1|2|3|4|5>
-  review: <unreviewed|reviewed|verified>
-  human-only-lock: <true|false>
+llm-authorship: <1|2|3|4|5>         # Optional LLM provenance + trust fields
+llm-review: <unreviewed|reviewed|verified>
+llm-human-only-lock: <true|false>
 sensitivity: <public|internal|confidential|restricted>  # required on person / personal-data dataset
 visibility: <listed|unlisted|hidden>   # Optional surfacing control
 superseded_by: <path or id of the note that replaces this one>  # Optional
@@ -78,7 +76,7 @@ see-also: [<path or id>, …]        # Optional machine-readable related-notes r
 
 **Required:** `type` only.
 
-**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`, `llm`, `sensitivity`, `visibility`, `id`, `aliases`, `see-also`, `superseded_by`.
+**Recommended, in priority order:** `category`, `title`, `description`, `resource`, `tags`, `timestamp`, `llm-authorship`/`llm-review`/`llm-human-only-lock`, `sensitivity`, `visibility`, `id`, `aliases`, `see-also`, `superseded_by`.
 
 The full field reference is [§4](#4-field-reference). Two overarching distinctions drive most field choices:
 
@@ -248,18 +246,17 @@ Controls how a note is *surfaced* — whether it shows up in `index.md`, in rout
 
 `unlisted`/`hidden` notes are still first-class concepts; consumers that build `index.md` skip them. `hidden` is a surfacing hint, not access control — pair it with `sensitivity` when the concern is privacy, not just clutter. Set `visibility` explicitly only when you want non-default behaviour.
 
-### 4.13 `llm` (optional) — provenance and trust block
+### 4.13 `llm-authorship` / `llm-review` / `llm-human-only-lock` (optional) — provenance and trust fields
 
-A map recording an LLM's relationship to a note in one place: how much of the text an LLM produced (`authorship`), whether a human has vetted it (`review`), and whether agents may edit it without sign-off (`human-only-lock`). It replaces the earlier standalone `authorship` scalar (now `llm.authorship`).
+Three flat fields recording an LLM's relationship to a note in one place: how much of the text an LLM produced (`llm-authorship`), whether a human has vetted it (`llm-review`), and whether agents may edit it without sign-off (`llm-human-only-lock`). They replace the earlier standalone `authorship` scalar and the later nested `llm` map. Kept flat rather than nested so each field maps onto a native Obsidian property type (Number, Text, Checkbox) — Obsidian's Properties panel has no "object" type, so a nested map is a permanent type-mismatch source there.
 
 ```yaml
-llm:
-  authorship: 2
-  review: reviewed
-  human-only-lock: false
+llm-authorship: 2
+llm-review: reviewed
+llm-human-only-lock: false
 ```
 
-**`authorship` (1–5)** — how the text was produced. A **provenance** record, not a quality signal (a `5` can be wrong; a `1` can be correct — that's why `review` is separate).
+**`llm-authorship` (1–5)** — how the text was produced. A **provenance** record, not a quality signal (a `5` can be wrong; a `1` can be correct — that's why `llm-review` is separate).
 
 | Value | Meaning |
 |-------|---------|
@@ -269,9 +266,9 @@ llm:
 | `4` | Human-drafted, LLM-edited. A human produced the text; an LLM revised it. |
 | `5` | Fully human-authored. No LLM involvement. |
 
-Higher numbers mean more of the final text is directly attributable to a human hand — but `3` and `4` are not ranked against each other (different workflows, not degrees of trust), and `1` vs `2` both stay fully LLM-penned, differing only in editorial control. The `1` vs `2` line turns on whether there was *any* round of human feedback that led to a revision, not on how the note started: a single up-front instruction with no follow-up ("write a note about X") is still `1`; as soon as a human reacts to a draft and the LLM revises — even just "rename this" — it's `2`. When `authorship` is `1`–`4`, the note also carries detailed provenance (prompt, model): **inline** for `1`, a **`.llm/` sidecar** for `2`–`4` ([§8](#8-llm-provenance)).
+Higher numbers mean more of the final text is directly attributable to a human hand — but `3` and `4` are not ranked against each other (different workflows, not degrees of trust), and `1` vs `2` both stay fully LLM-penned, differing only in editorial control. The `1` vs `2` line turns on whether there was *any* round of human feedback that led to a revision, not on how the note started: a single up-front instruction with no follow-up ("write a note about X") is still `1`; as soon as a human reacts to a draft and the LLM revises — even just "rename this" — it's `2`. When `llm-authorship` is `1`–`4`, the note also carries detailed provenance (prompt, model): **inline** for `1`, a **`.llm/` sidecar** for `2`–`4` ([§8](#8-llm-provenance)).
 
-**`review` (unreviewed | reviewed | verified)** — the trust signal, deliberately separate from authorship. Absent means `unreviewed`.
+**`llm-review` (unreviewed | reviewed | verified)** — the trust signal, deliberately separate from authorship. Absent means `unreviewed`.
 
 | Value | Meaning |
 |-------|---------|
@@ -279,15 +276,15 @@ Higher numbers mean more of the final text is directly attributable to a human h
 | `reviewed` | A human has read the note and approved it as a whole. |
 | `verified` | A human has checked the note's specific claims/facts for correctness, not just read it. |
 
-`review` can be set even on a fully human note (`authorship: 5`) — a stale hand-written fact is no safer than an agent-written one.
+`llm-review` can be set even on a fully human note (`llm-authorship: 5`) — a stale hand-written fact is no safer than an agent-written one.
 
-**`human-only-lock` (true | false)** — whether agents may edit the note autonomously. `true` means an agent MUST get explicit human sign-off before changing it; `false`/absent means agents may edit under normal conventions. Use it on notes whose wording is load-bearing (the spec itself, policy notes).
+**`llm-human-only-lock` (true | false)** — whether agents may edit the note autonomously. `true` means an agent MUST get explicit human sign-off before changing it; `false`/absent means agents may edit under normal conventions. Use it on notes whose wording is load-bearing (the spec itself, policy notes).
 
-Conventions: every key is optional and tolerated missing/out-of-range. The block reflects the *current* state, not full history — update `authorship` to the level best describing the latest substantive pass, and move `review` back to `unreviewed` if a reviewed note is materially rewritten. Set/update `llm` at the same time you'd bump `timestamp`. Don't let `llm` become a junk drawer — content classification goes in `category`, keywords in `tags`, freshness/sensitivity/superseding in their own fields.
+Conventions: every field is optional and tolerated missing/out-of-range. They reflect the *current* state, not full history — update `llm-authorship` to the level best describing the latest substantive pass, and move `llm-review` back to `unreviewed` if a reviewed note is materially rewritten. Set/update these fields at the same time you'd bump `timestamp`. Don't let them become a junk drawer — content classification goes in `category`, keywords in `tags`, freshness/sensitivity/superseding in their own fields.
 
 ### 4.14 `timestamp` (optional)
 
-Last-modified time as an ISO 8601 datetime (e.g. `2026-07-13T00:00:00Z`). Bump it together with the fields that changed — especially `llm`, `resource`, `superseded_by`.
+Last-modified time as an ISO 8601 datetime (e.g. `2026-07-13T00:00:00Z`). Bump it together with the fields that changed — especially `llm-authorship`/`llm-review`, `resource`, `superseded_by`.
 
 ---
 
@@ -368,7 +365,7 @@ Below the frontmatter, a concept's body is ordinary markdown. Conventions, not r
 
 - The opening line usually restates or expands the `description` so the note stands alone.
 - Use path links or wikilinks ([§5](#5-linking-and-the-resolver)) for internal references; `resource` and body links point outside/inside the wiki respectively.
-- For a note with `llm.authorship: 1`, an **inline provenance block** sits at the very top of the body, above the content ([§8](#8-llm-provenance)).
+- For a note with `llm-authorship: 1`, an **inline provenance block** sits at the very top of the body, above the content ([§8](#8-llm-provenance)).
 
 ---
 
@@ -393,7 +390,7 @@ projects/
 
 ## 8. LLM provenance
 
-Notes with LLM involvement in their text (`llm.authorship` `1`–`4`) carry a durable record of *how* that text was produced — the prompt, the model, and the resulting authorship level. This is a **provenance record**, not a quality signal and not a changelog; its job is to let a later reader reconstruct how a note came to say what it says. It is a **recommended convention, not a conformance requirement** — missing or partial provenance is tolerated like any missing optional field.
+Notes with LLM involvement in their text (`llm-authorship` `1`–`4`) carry a durable record of *how* that text was produced — the prompt, the model, and the resulting authorship level. This is a **provenance record**, not a quality signal and not a changelog; its job is to let a later reader reconstruct how a note came to say what it says. It is a **recommended convention, not a conformance requirement** — missing or partial provenance is tolerated like any missing optional field.
 
 ### Where provenance lives
 
@@ -514,7 +511,7 @@ A scope-okf wiki is **OKF v0.1 conformant** if:
 4. *(Wiki extension)* Every folder containing a `type: main` file has both an `index.md` and a `log.md`.
 5. *(Wiki extension)* Every `type: person` note, and every `type: dataset` note that contains personal information, has a `sensitivity` field.
 
-**Tolerated — these do NOT break conformance:** missing optional fields; unknown `type`/`category` values; unknown `sensitivity`/`visibility` values; out-of-range `llm.authorship` values; missing or partial LLM provenance (inline blocks or `.llm/` sidecars); and broken links or `see-also`/`superseded_by`/`id` references. LLM provenance is a recommended convention, not a conformance requirement. Rule 5 (`sensitivity`) is the only one of the wiki-extension fields that affects conformance, and only for `person`/`dataset` notes.
+**Tolerated — these do NOT break conformance:** missing optional fields; unknown `type`/`category` values; unknown `sensitivity`/`visibility` values; out-of-range `llm-authorship` values; missing or partial LLM provenance (inline blocks or `.llm/` sidecars); and broken links or `see-also`/`superseded_by`/`id` references. LLM provenance is a recommended convention, not a conformance requirement. Rule 5 (`sensitivity`) is the only one of the wiki-extension fields that affects conformance, and only for `person`/`dataset` notes.
 
 ---
 
@@ -523,9 +520,9 @@ A scope-okf wiki is **OKF v0.1 conformant** if:
 Consolidated do/don't for an agent creating or editing notes in a scope-okf wiki:
 
 - **Frontmatter first.** Every note you create needs YAML frontmatter with a non-empty `type` ([§4.1](#41-type-required)). Default to `type: note` unless it's a folder root (`main`) or matches an adopted candidate. Add `title`, `description`, `tags`, `category`, `timestamp` where genuinely useful — don't pad them.
-- **Set `llm.authorship` honestly** ([§4.13](#413-llm-optional--provenance-and-trust-block)). Reflect *your own* involvement — don't default to `5` just because a human asked for the change. Most LLM-assisted notes in a conversational wiki are `2`, not `1`. When `authorship` is `1`–`4`, record provenance: inline for `1`, a `.llm/` sidecar for `2`–`4` ([§8](#8-llm-provenance)).
-- **Don't self-certify `review`.** Set `review: unreviewed` on notes you produce unless the human has actually vetted them in the same session. `reviewed`/`verified` are the human's to assert.
-- **Respect `human-only-lock: true`** as binding: propose the change, wait for explicit go-ahead, then write.
+- **Set `llm-authorship` honestly** ([§4.13](#413-llm-authorship--llm-review--llm-human-only-lock-optional--provenance-and-trust-fields)). Reflect *your own* involvement — don't default to `5` just because a human asked for the change. Most LLM-assisted notes in a conversational wiki are `2`, not `1`. When `llm-authorship` is `1`–`4`, record provenance: inline for `1`, a `.llm/` sidecar for `2`–`4` ([§8](#8-llm-provenance)).
+- **Don't self-certify `llm-review`.** Set `llm-review: unreviewed` on notes you produce unless the human has actually vetted them in the same session. `reviewed`/`verified` are the human's to assert.
+- **Respect `llm-human-only-lock: true`** as binding: propose the change, wait for explicit go-ahead, then write.
 - **Handle `sensitivity` carefully** ([§4.11](#411-sensitivity-required-on-person--personal-data-dataset)). Never surface, quote, or transmit a `restricted` note, and treat `confidential` as need-to-know, unless the human explicitly authorized it this session. When you create a `type: person` note or a `type: dataset` note with personal data, set `sensitivity` in the same pass — omitting it breaks conformance.
 - **Respect `visibility`** ([§4.12](#412-visibility-optional)). Don't volunteer `hidden` notes unless named; leave `unlisted` notes out of any index you generate.
 - **Folder roots pull in files.** Creating a `type: main` note means the folder also needs an `index.md` and a `log.md` — create or update both ([§7](#7-folder-roots-type-main)).
@@ -534,7 +531,7 @@ Consolidated do/don't for an agent creating or editing notes in a scope-okf wiki
 - **Prefer successors.** When a note carries `superseded_by`, prefer its successor for answers and don't edit the superseded note's content except to fix the pointer.
 - **Link portably.** Use normal markdown links; bundle-relative (`/path/to/note.md`) is preferred over relative paths. Follow the resolver order exactly — `id` → basename → `title`/`aliases` — and treat ambiguous/unresolvable references as tolerated, not errors ([§5](#5-linking-and-the-resolver)).
 - **Don't change the rules unilaterally.** Don't add new required fields, reserved filenames, or conformance rules on your own — propose the change, wait for explicit go-ahead, then write.
-- **Don't backfill blindly.** Don't retroactively add `llm`, provenance, or `sensitivity` to old notes unless you're confident how they were produced and what they contain.
+- **Don't backfill blindly.** Don't retroactively add `llm-authorship`/`llm-review`, provenance, or `sensitivity` to old notes unless you're confident how they were produced and what they contain.
 
 ---
 
@@ -562,9 +559,8 @@ description: One-line summary of the project.
 category: project
 tags: [example]
 timestamp: 2026-07-13T00:00:00Z
-llm:
-  authorship: 2
-  review: unreviewed
+llm-authorship: 2
+llm-review: unreviewed
 ---
 
 Root concept for this folder. See the [index](/project/index.md) and [log](/project/log.md).

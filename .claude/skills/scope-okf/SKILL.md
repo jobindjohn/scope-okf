@@ -1,6 +1,6 @@
 ---
 name: scope-okf
-description: Use when reading, creating, or editing markdown notes in a scope-okf / Open Knowledge Format (OKF) wiki — a git folder of plain markdown files with YAML frontmatter. Covers frontmatter fields (type, category, title, description, tags, resource, id, aliases, see-also, superseded_by, sensitivity, visibility, llm), folder roots (type: main), index.md and log.md, wikilinks and the link resolver, LLM provenance (.llm/ sidecars, authorship levels), and conformance rules. Triggers on: scope-okf, OKF, knowledge wiki, concept document, frontmatter type field, wikilink, llm-log, note provenance.
+description: Use when reading, creating, or editing markdown notes in a scope-okf / Open Knowledge Format (OKF) wiki — a git folder of plain markdown files with YAML frontmatter. Covers frontmatter fields (type, category, title, description, tags, resource, id, aliases, see-also, superseded_by, sensitivity, visibility, llm-authorship/llm-review/llm-human-only-lock), folder roots (type: main), index.md and log.md, wikilinks and the link resolver, LLM provenance (.llm/ sidecars, authorship levels), and conformance rules. Triggers on: scope-okf, OKF, knowledge wiki, concept document, frontmatter type field, wikilink, llm-log, note provenance.
 ---
 
 # scope-okf
@@ -22,10 +22,9 @@ description: <one-line summary>     # must stand alone; feeds index.md entries
 resource: <URI or map of URIs>     # where the real external asset lives
 tags: [<tag>, …]                   # lowercase, hyphenated; 2–4 specific ones
 timestamp: <ISO 8601 datetime>
-llm:
-  authorship: <1|2|3|4|5>
-  review: <unreviewed|reviewed|verified>
-  human-only-lock: <true|false>
+llm-authorship: <1|2|3|4|5>          # Number, Text, Checkbox in Obsidian — kept flat, not nested
+llm-review: <unreviewed|reviewed|verified>
+llm-human-only-lock: <true|false>
 sensitivity: <public|internal|confidential|restricted>  # REQUIRED on person / personal-data dataset
 visibility: <listed|unlisted|hidden>
 superseded_by: <path or id>
@@ -38,9 +37,9 @@ Only `type` is required. `type` = structural role; `category` = what kind of thi
 ## Agent operating rules
 
 - **Frontmatter first.** Every note needs a non-empty `type`. Default to `type: note` unless it's a folder root (`main`) or an adopted candidate. Add `title`/`description`/`tags`/`category`/`timestamp` only where genuinely useful.
-- **Set `llm.authorship` honestly** about *your own* involvement — don't default to `5`. Most LLM-assisted notes are `2` (human-directed, human never edits prose directly), not `1`. When authorship is `1`–`4`, record provenance: **inline** block at top of body for `1`, a **`.llm/<note>-llm.md` sidecar** (`type: llm-log`) for `2`–`4`.
-- **Don't self-certify `review`.** Use `review: unreviewed` unless the human vetted it this session. `reviewed`/`verified` are theirs to assert.
-- **Respect `human-only-lock: true`** — propose, wait for explicit go-ahead, then write.
+- **Set `llm-authorship` honestly** about *your own* involvement — don't default to `5`. Most LLM-assisted notes are `2` (human-directed, human never edits prose directly), not `1`. When authorship is `1`–`4`, record provenance: **inline** block at top of body for `1`, a **`.llm/<note>-llm.md` sidecar** (`type: llm-log`) for `2`–`4`.
+- **Don't self-certify `llm-review`.** Use `llm-review: unreviewed` unless the human vetted it this session. `reviewed`/`verified` are theirs to assert.
+- **Respect `llm-human-only-lock: true`** — propose, wait for explicit go-ahead, then write.
 - **Handle `sensitivity` carefully.** Never surface/quote/transmit a `restricted` note; treat `confidential` as need-to-know, unless the human authorized it this session. Set `sensitivity` in the same pass when creating a `type: person` note or a `type: dataset` with personal data (minimum `confidential`) — omitting it breaks conformance.
 - **Respect `visibility`.** Don't volunteer `hidden` notes unless named; leave `unlisted` notes out of any index you generate.
 - **Folder roots pull in files.** A `type: main` note means the folder MUST also have `index.md` and `log.md` — create or update both.
@@ -48,7 +47,7 @@ Only `type` is required. `type` = structural role; `category` = what kind of thi
 - **Keep ids stable.** Never mint a new `id` for an existing concept on rename/move; record an `alias` so old name-based links keep resolving.
 - **Prefer successors.** When a note has `superseded_by`, use the successor and don't edit the superseded note except to fix the pointer.
 - **Link portably.** Prefer bundle-relative markdown links (`/path/to/note.md`). Resolver order is `id` → filename basename → `title`/`aliases`; ambiguous/unresolvable references are tolerated, not errors.
-- **Don't change the rules unilaterally** and **don't backfill blindly** — don't add required fields/reserved names, or retro-add `llm`/provenance/`sensitivity` to old notes unless you're confident.
+- **Don't change the rules unilaterally** and **don't backfill blindly** — don't add required fields/reserved names, or retro-add `llm-authorship`/`llm-review`/provenance/`sensitivity` to old notes unless you're confident.
 
 ## Templates
 
@@ -72,9 +71,8 @@ description: One-line summary of the project.
 category: project
 tags: [example]
 timestamp: 2026-07-13T00:00:00Z
-llm:
-  authorship: 2
-  review: unreviewed
+llm-authorship: 2
+llm-review: unreviewed
 ---
 
 Root concept for this folder. See the [index](/project/index.md) and [log](/project/log.md).
