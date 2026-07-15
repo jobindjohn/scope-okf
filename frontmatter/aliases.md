@@ -6,9 +6,8 @@ title: Aliases
 description: How the aliases field gives a note extra names for name-based links, matched at the lowest resolver tier.
 tags: [okf, meta, aliases, linking]
 timestamp: 2026-07-12T00:00:00Z
-llm:
-  authorship: 2
-  review: unreviewed
+llm-authorship: 2
+llm-review: unreviewed
 see-also: [/scope-okf.md, /frontmatter/id.md, /frontmatter/see-also.md]
 ---
 

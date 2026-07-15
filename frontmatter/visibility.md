@@ -6,9 +6,8 @@ title: Visibility
 description: How the visibility field controls whether a note is indexed, searched, and surfaced by agents.
 tags: [okf, meta, visibility]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 see-also: [/frontmatter/sensitivity.md, /index.md]
 ---
 

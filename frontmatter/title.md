@@ -5,9 +5,8 @@ title: Title
 description: How the title field records a concept's display name.
 tags: [okf, meta, title]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 ---
 
 Notes on the `title` field, expanding on its definition in [scope-okf.md](/scope-okf.md).

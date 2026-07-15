@@ -6,9 +6,8 @@ title: See also
 description: How the see-also field records related notes as a machine-readable relation, complementing inline body links.
 tags: [okf, meta, see-also, links]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 see-also: [/frontmatter/id.md, /frontmatter/superseded_by.md]
 ---
 

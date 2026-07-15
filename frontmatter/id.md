@@ -6,9 +6,8 @@ title: Id
 description: How the id field gives a note a stable identifier that survives renames and moves.
 tags: [okf, meta, id]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 see-also: [/frontmatter/see-also.md, /frontmatter/superseded_by.md, /frontmatter/title.md]
 ---
 

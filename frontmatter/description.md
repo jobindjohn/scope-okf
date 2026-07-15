@@ -5,9 +5,8 @@ title: Description
 description: How the description field records a one-line summary of a concept.
 tags: [okf, meta, description]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 ---
 
 Notes on the `description` field, expanding on its definition in [scope-okf.md](/scope-okf.md).

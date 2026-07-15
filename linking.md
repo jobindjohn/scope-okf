@@ -6,9 +6,8 @@ title: Linking
 description: How notes reference each other — path links and Obsidian-style wikilinks resolved by one tolerant algorithm (id → basename → title/aliases).
 tags: [okf, meta, linking, wikilinks, links]
 timestamp: 2026-07-12T00:00:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 see-also: [/scope-okf.md, /frontmatter/aliases.md, /frontmatter/id.md, /frontmatter/see-also.md]
 ---
 

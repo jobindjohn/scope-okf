@@ -5,9 +5,8 @@ title: Type
 description: How the type field marks a concept's structural role in the wiki — the one required frontmatter field.
 tags: [okf, meta, type]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 ---
 
 Notes on the `type` field, expanding on its definition in [scope-okf.md](/scope-okf.md).

@@ -1,5 +1,9 @@
 # Directory Update Log
 
+## 2026-07-15
+
+* **Update**: Replaced the nested `llm` map (`llm.authorship`/`llm.review`/`llm.human-only-lock`) with three flat fields — `llm-authorship`, `llm-review`, `llm-human-only-lock` — across the spec ([scope-okf](/scope-okf.md), [scope-okf-SPEC](/scope-okf-SPEC.md)), [LLM provenance](/llm.md), [LLM field](/frontmatter/llm.md), the bundled skill files, and every existing note that carried the block ([linking](/linking.md) plus all of `frontmatter/*.md`). Reason: Obsidian's Properties panel has no "object" type and had registered `llm` vault-wide as a List, so the nested map produced a permanent "Type mismatch, expected a list" warning; the flat fields map onto Obsidian's native Number/Text/Checkbox types instead.
+
 ## 2026-07-13
 
 * **Update**: Marked [scope-okf](/scope-okf.md) `review: reviewed` and repointed its end-of-document "Full specification" reference to the project repo (`https://github.com/jobindjohn/scope-okf`), keeping OKF v0.1 as the credited base format. Human-directed edit to a `human-only-lock: true` note; recorded in `.llm/scope-okf-llm.md`.

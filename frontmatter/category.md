@@ -5,9 +5,8 @@ title: Categories
 description: How the category field is used to classify concepts in this wiki.
 tags: [okf, meta, category]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 ---
 
 Notes on the `category` field, expanding on its definition in [scope-okf.md](/scope-okf.md).

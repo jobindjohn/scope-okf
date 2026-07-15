@@ -6,9 +6,8 @@ title: Superseded by
 description: How the superseded_by field marks a note as replaced by a newer one and points to its successor.
 tags: [okf, meta, superseded, deprecation]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 see-also: [/frontmatter/id.md, /frontmatter/type.md, /frontmatter/see-also.md]
 ---
 

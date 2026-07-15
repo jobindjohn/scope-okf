@@ -6,9 +6,8 @@ title: Sensitivity
 description: How the sensitivity field classifies how private or protected a note's content is — required on person and personal-data dataset notes.
 tags: [okf, meta, sensitivity, privacy]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 sensitivity: public
 see-also: [/frontmatter/visibility.md, /frontmatter/type.md]
 ---

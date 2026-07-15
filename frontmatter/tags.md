@@ -5,9 +5,8 @@ title: Tags
 description: How the tags field is used for free-form keywords and cross-cutting association in this wiki.
 tags: [okf, meta, tags]
 timestamp: 2026-07-11T23:30:00Z
-llm:
-  authorship: 2
-  review: reviewed
+llm-authorship: 2
+llm-review: reviewed
 ---
 
 Notes on the `tags` field, expanding on its definition in [scope-okf.md](/scope-okf.md).
